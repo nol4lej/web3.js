@@ -1,6 +1,8 @@
 // Importa la biblioteca Web3.js - Solo se puede importar al utilizar node.js
 // const Web3 = require('web3');
 
+import { connectWallet } from "./accounts.js"
+
 export async function connectNetwork(){
     try {
         await connecting()
@@ -19,16 +21,5 @@ function connecting(){
     })
 }
 
-async function connectWallet(){
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const account = accounts[0];
-    console.log(account)
-}
 
-class User{
-    constructor(id, wallet){
-        this.id = id;
-        this.wallet = wallet;
-    }
-}
 

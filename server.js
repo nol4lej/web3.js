@@ -1,35 +1,16 @@
-const fs = require('fs');
+// const express = require('express');
+// const app = express();
+// const path = require('path');
 
-const http = require('http');
-const hostname = '127.0.0.1';
-const port = 3000;
+// // Ruta para servir los archivos estáticos en el directorio principal
+// app.use(express.static(path.join(__dirname)));
 
-const server = http.createServer((req, res) => {
-    const { url } = req;
-    let contentType;
-  
-    if (url.endsWith('.html')) {
-      contentType = 'text/html';
-    } else if (url.endsWith('.js')) {
-      contentType = 'application/javascript'; // Cambiado a 'application/javascript'
-    } else {
-      contentType = 'text/plain';
-    }
-  
-    res.setHeader('Content-Type', contentType);
-  
-    fs.readFile(`.${url}`, (err, data) => {
-      if (err) {
-        res.statusCode = 500;
-        res.end('Error loading file');
-      } else {
-        res.statusCode = 200;
-        res.end(data);
-      }
-    });
-  });
+// // Ruta para manejar la solicitud GET a la página principal
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
-  server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-  });
-  
+// // Iniciar el servidor
+// app.listen(3000, () => {
+//   console.log('Servidor web en ejecución en http://localhost:3000`');
+// });

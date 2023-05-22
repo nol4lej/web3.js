@@ -1,3 +1,3 @@
-import { connectNetwork } from "./connections.js";
+import { connectNetwork } from "./src/controllers/connections.js";
 
 connectNetwork()
