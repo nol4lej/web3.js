@@ -7,10 +7,11 @@ export async function connectNetwork(){
     try {
         await connecting()
         console.log("Connected to Infura")
+        connectWallet()
     } catch (error) {
         console.error("Cannot connect to provide: ", error)
     }
-    connectWallet()
+    
 }
 
 function connecting(){

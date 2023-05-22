@@ -14,15 +14,19 @@ class User{
 }
 
 export async function connectWallet(){
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const account = accounts[0];
-    console.log(account);
-
-    fetch('../../users.json')
-    .then(data => data.json())
-    .then(respuesta => {
-        controllerUsers(respuesta, account);
-    })
+    try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        console.log(account);
+    
+        fetch('../../users.json')
+        .then(data => data.json())
+        .then(respuesta => {
+            controllerUsers(respuesta, account);
+        })
+    } catch (error) {
+        console.error("No se a conectado la wallet: ", error)
+    }
 }
 
 async function controllerUsers(respuesta, account){
@@ -35,8 +39,7 @@ function verifyAccount(array, account){
     return new Promise((resolve, reject) => {
         array.forEach(user => {
             if(user.wallet === account){
-                console.log("Wallet ya existe: ", account)
-                reject()
+                reject(`Wallet ya existe:\nID: ${user.id}\nWallet: ${account}`)
             }
         });
         resolve()
