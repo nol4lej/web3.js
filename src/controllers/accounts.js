@@ -2,7 +2,6 @@
 import { web3 } from "./connections.js";
 
 const connect_button = document.getElementById("connect_wallet");
-const desconnect_button = document.getElementById("desconnect_wallet");
 let currentAccount = null; // Se utiliza en connectWallet para almacenar la wallet que se conecta y posteriormente se utiliza en handleAccountsChanged para manejar la actualización de la wallet conectada actual.
 let accounts = []; // Creado para acceder a la cuenta conectada actual. Se utiliza en handleAccountsChanged.
 

@@ -1,17 +1,18 @@
 // Importa la biblioteca Web3.js - Solo se puede importar al utilizar node.js
 // const Web3 = require('web3');
-
+import { blocksEvent } from "./blockchain_data.js";
 import { connectWallet, connect_button } from "./accounts.js" // CONECTAR WALLET PASO 1
 let web3; //declaramos para posteriormente exportar
 
 async function connectNetwork(){
     await connecting()
+    blocksEvent();
     await verifyProvider() 
 }
 
 function connecting(){
     return new Promise((resolve, reject) => {
-        web3 = new Web3("https://rpc.api.moonbase.moonbeam.network");
+        web3 = new Web3("wss://wss.api.moonbase.moonbeam.network");
         // Verifica si la conexión es válida
         web3.eth.net.isListening()
         .then(() => {
@@ -37,3 +38,4 @@ function verifyProvider(){
 }
 
 export {web3, connectNetwork};
+
