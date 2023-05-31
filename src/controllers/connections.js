@@ -39,3 +39,4 @@ function verifyProvider(){
 
 export {web3, connectNetwork};
 
+

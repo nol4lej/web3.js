@@ -3,7 +3,13 @@ import { web3 } from "./connections.js";
 // Función para manejar el evento newBlockHeaders
 function handleNewBlockHeaders(blockHeader) {
     const blockNumber = blockHeader.number;
+    const hash = blockHeader.hash;
+    const gasUsed = blockHeader.gasUsed;
+    const miner = blockHeader.miner;
     console.log(blockNumber);
+    console.log("Block hash:",hash)
+    console.log("Gas:", gasUsed)
+    console.log("Miner:", miner);
   }
   
 
