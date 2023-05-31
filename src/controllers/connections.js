@@ -1,15 +1,12 @@
 // Importa la biblioteca Web3.js - Solo se puede importar al utilizar node.js
 // const Web3 = require('web3');
 
-import { connectWallet } from "./accounts.js" // CONECTAR WALLET PASO 1
-const connect_button = document.getElementById("connect_wallet"); // CONECTAR WALLET PASO 2
-
+import { connectWallet, connect_button } from "./accounts.js" // CONECTAR WALLET PASO 1
 let web3; //declaramos para posteriormente exportar
 
-export async function connectNetwork(){
+async function connectNetwork(){
     await connecting()
-    console.log("Connected to Moonbeam Alpha")
-    connect_button.onclick = connectWallet; // CONECTAR WALLET PASO 3
+    await verifyProvider() 
 }
 
 function connecting(){
@@ -18,7 +15,7 @@ function connecting(){
         // Verifica si la conexión es válida
         web3.eth.net.isListening()
         .then(() => {
-            resolve();
+            resolve(console.log("Connected to Moonbase Alpha"));
         })
         .catch(error => {
             reject(error);
@@ -26,4 +23,17 @@ function connecting(){
     })
 }
 
-export { web3 };
+function verifyProvider(){
+    return new Promise((resolve, reject) => {
+        if(window.ethereum){
+            connect_button.onclick = connectWallet; // CONECTAR WALLET PASO 2
+            resolve()
+        } else{
+            connect_button.textContent = "Install Wallet Provider"
+            // Desactivo reject para que no interrumpa a la funcion connectNetowrk() en caso no tener proveedor.
+            // reject(console.error("Instalar un proveedor."))
+        }
+    })
+}
+
+export {web3, connectNetwork};

@@ -1,6 +1,8 @@
 // const fs = require('fs');
 import { web3 } from "./connections.js";
 
+const connect_button = document.getElementById("connect_wallet");
+
 class User{
     constructor(id, wallet){
         this.id = id;
@@ -14,23 +16,27 @@ class User{
     }
 }
 
+
 // PASO 1
-export async function connectWallet(){
-    try {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const account = accounts[0];
-        getBalance(account)
-        console.log(account);
-    
-        fetch('../../users.json')
-        .then(data => data.json())
-        .then(respuesta => {
-            // PASO 2
-            controllerUsers(respuesta, account);
-        })
-    } catch (error) {
-        console.error("No se a conectado la wallet: ", error)
-    }
+async function connectWallet(){
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+    .catch((err) => {
+      if (err.code === 4001) {
+        console.log('Please connect to MetaMask.');
+      } else {
+        console.error(err);
+      }
+    });
+    const account = accounts[0];
+    console.log(account);
+    getBalance(account);
+            
+    fetch('../../users.json')
+    .then(data => data.json())
+    .then(respuesta => {
+        // PASO 2
+        controllerUsers(respuesta, account);
+    })
 }
 
 // PASO 3
@@ -70,3 +76,23 @@ async function getBalance(account){
     const balance_legible = web3.utils.fromWei(balance, 'ether'); //Conversion del resultado hexadecimal a numero entero y aplicar el factor de conversion (wei a ether)
     console.log(balance_legible)
 }
+
+let currentAccount = null;
+window.ethereum.request({ method: 'eth_accounts' })
+  .then(handleAccountsChanged)
+  .catch((err) => {
+    console.error(err);
+  });
+
+window.ethereum.on('accountsChanged', handleAccountsChanged);
+
+function handleAccountsChanged(accounts) {
+  if (accounts.length === 0) {
+    console.log('Please connect to MetaMask.');
+  } else if (accounts[0] !== currentAccount) {
+    currentAccount = accounts[0];
+    console.log(currentAccount)
+  }
+}
+
+export {connectWallet, connect_button};

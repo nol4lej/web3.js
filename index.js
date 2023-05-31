@@ -1,7 +1,6 @@
 import { connectNetwork } from "./src/controllers/connections.js";
-import { connectWallet } from "./src/controllers/accounts.js";
+import { addChain, add_chain} from "./src/controllers/addChain.js";
 
-// const connect_button = document.getElementById("connect_wallet");
+connectNetwork();
 
-connectNetwork()
-// connect_button.onclick = connectWallet;
+add_chain.onclick = addChain;
