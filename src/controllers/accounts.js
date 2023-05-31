@@ -2,6 +2,9 @@
 import { web3 } from "./connections.js";
 
 const connect_button = document.getElementById("connect_wallet");
+const desconnect_button = document.getElementById("desconnect_wallet");
+let currentAccount = null; // Se utiliza en connectWallet para almacenar la wallet que se conecta y posteriormente se utiliza en handleAccountsChanged para manejar la actualización de la wallet conectada actual.
+let accounts = []; // Creado para acceder a la cuenta conectada actual. Se utiliza en handleAccountsChanged.
 
 class User{
     constructor(id, wallet){
@@ -19,7 +22,7 @@ class User{
 
 // PASO 1
 async function connectWallet(){
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+    const account_connected = await window.ethereum.request({ method: 'eth_requestAccounts' })
     .catch((err) => {
       if (err.code === 4001) {
         console.log('Please connect to MetaMask.');
@@ -27,15 +30,13 @@ async function connectWallet(){
         console.error(err);
       }
     });
-    const account = accounts[0];
-    console.log(account);
-    getBalance(account);
+    currentAccount = account_connected[0]
             
     fetch('../../users.json')
     .then(data => data.json())
     .then(respuesta => {
         // PASO 2
-        controllerUsers(respuesta, account);
+        controllerUsers(respuesta, currentAccount);
     })
 }
 
@@ -77,22 +78,31 @@ async function getBalance(account){
     console.log(balance_legible)
 }
 
-let currentAccount = null;
-window.ethereum.request({ method: 'eth_accounts' })
-  .then(handleAccountsChanged)
-  .catch((err) => {
-    console.error(err);
-  });
-
+// Evento que detecta y reacciona al cambio de cuenta en la wallet (accountsChanged).
 window.ethereum.on('accountsChanged', handleAccountsChanged);
 
-function handleAccountsChanged(accounts) {
-  if (accounts.length === 0) {
-    console.log('Please connect to MetaMask.');
-  } else if (accounts[0] !== currentAccount) {
-    currentAccount = accounts[0];
-    console.log(currentAccount)
-  }
+// El parámetro accounts en handleAccountsChanged es el resultado enviado automáticamente cuando se produce el evento 'accountsChanged' o cuando se resuelve la promesa de eth_accounts.
+function handleAccountsChanged(newAccount) {
+    accounts = newAccount; //Reasignamos el valor del array accounts con el nuevo array obtenido
+    // accounts contiene el array de cuentas actualizadas obtenido por el metodo "eth_accounts".
+    if (accounts.length === 0) {
+        console.log('Please connect to MetaMask.');
+    } else if (accounts[0] !== currentAccount) {
+        currentAccount = accounts[0];
+
+        getBalance(currentAccount)
+        console.log(currentAccount)
+    }
 }
+
+window.ethereum.request({ method: 'eth_accounts' })
+    .then((newAccount) => {
+        accounts = newAccount;
+        handleAccountsChanged(accounts);
+    }) // Cuando se resuelve la promesa, el resultado (array de cuentas) se pasa automáticamente como argumento a la función handleAccountsChanged.
+    .catch((err) => {
+        console.error(err);
+    });
+
 
 export {connectWallet, connect_button};
