@@ -104,4 +104,4 @@ window.ethereum.request({ method: 'eth_accounts' })
     });
 
 
-export {connectWallet, connect_button};
+export {connectWallet, connect_button, currentAccount};

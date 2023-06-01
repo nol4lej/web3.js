@@ -2,11 +2,11 @@
 // const Web3 = require('web3');
 import { blocksEvent } from "./blockchain_data.js";
 import { connectWallet, connect_button } from "./accounts.js" // CONECTAR WALLET PASO 1
-let web3; //declaramos para posteriormente exportar
+let web3; // scope global para posterior a darle valor poder exportar y reutilizar. 
 
 async function connectNetwork(){
     await connecting()
-    blocksEvent();
+    // blocksEvent();
     await verifyProvider() 
 }
 
