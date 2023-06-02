@@ -16,7 +16,7 @@ function connecting(){
         // Verifica si la conexión es válida
         web3.eth.net.isListening()
         .then(() => {
-            document.getElementById("blockchain").textContent = "Connected to Moonbase";
+            document.getElementById("current_blockchain").textContent = "Connected to Moonbase";
             resolve();
         })
         .catch(error => {

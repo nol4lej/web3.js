@@ -5,24 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./src/css/index.css">
 
     <title>Document</title>
 </head>
 <body>
 
     <header id="header">
-        <div class="">
+        <div class="tittle_container">
             <h1>Testing dApp</h1>
         </div>
-        <div class="blockchain_data">
-            <div class="">
-                <span id="blockchain"></span>
+        <div class="blockchain_data_container">
+            <div class="blockchain_status">
+                <span id="current_blockchain">Connecting Chain</span>
             </div>
-            <div class="">Lastest Block: <span id="current_block"></span></div>
-            <div class="">Miner: <span id="block_miner"></span></div>
-            <div class="">Hash: <span id="hash_block"></span></div>
-            <div class="">Gas used: <span id="gas"></span></div>
-
+            <div class="blockchain_data">
+                <p class="">Lastest Block: <span id="current_block"></span></p>
+                <p class="">Miner: <span id="block_miner"></span><button id="copy_icon" class="material-icons" name="miner">content_copy</button></p>
+                <p class="">Hash: <span id="hash_block"></span><button id="copy_icon" class="material-icons" name="hash">content_copy</button></p>
+                <p class="">Gas used: <span id="gas"></span></p>
+            </div>
         </div>
     </header>
 

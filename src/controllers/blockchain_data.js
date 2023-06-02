@@ -4,17 +4,34 @@ const current_block = document.getElementById("current_block");
 const block_miner = document.getElementById("block_miner");
 const hash_block = document.getElementById("hash_block");
 const gas = document.getElementById("gas");
+const iconsArray = document.querySelectorAll("#copy_icon");
 
 // Función para manejar el evento newBlockHeaders
 function handleNewBlockHeaders(blockHeader) {
     const { number, hash, miner, gasUsed } = blockHeader;
 
     current_block.textContent = number;
-    block_miner.textContent = miner;
-    hash_block.textContent = hash;
+    block_miner.textContent = miner.slice(0, -32)+"..."+miner.slice(-8);
+    hash_block.textContent = hash.slice(0, -56)+"..."+hash.slice(-8);
     gas.textContent = gasUsed;
+
+    // Recorre el array 
+    iconsArray.forEach((icon) => {
+        icon.style.display = "block";
+        // Si icon.name es igual a miner, entonces miner, sino hash.
+        const id_value = icon.name === "miner" ? miner : hash;
+        icon.addEventListener("click", () => {
+            // El método writeText() de navigator.clipboard se utiliza para escribir texto en el portapapeles y este método devuelve una promesa.
+            navigator.clipboard.writeText(id_value)
+            .then(() => {
+                console.log("Texto copiado al portapapeles: " + id_value);
+            })
+            .catch((error) => {
+                console.error("Error al copiar al portapapeles: ", error);
+            });
+        })
+    });
 }
-  
 
 function blocksEvent(){
     // Suscribirse al evento newBlockHeaders

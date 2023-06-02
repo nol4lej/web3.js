@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button{
+    cursor: pointer;
+}
+
+.header{
+
+}
+
+.tittle_container{
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.blockchain_data_container{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.blockchain_status{
+    text-align: center;
+    padding: 1em;
+}
+
+.blockchain_data{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+}
+
+.blockchain_data p{
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#copy_icon{
+    display: none;
+    border: 1px solid blue;
+    position: absolute; right: 0;
+    font-size: 18px;
+}
