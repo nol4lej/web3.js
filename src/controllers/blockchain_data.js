@@ -28,13 +28,27 @@ function blocksEvent(){
 }
 
 function lastBlock(){
-    web3.eth.getBlock('latest')
-    .then(blockHeader => {
-        handleNewBlockHeaders(blockHeader);
+    return new Promise((resolve, reject) => {
+        web3.eth.getBlock('latest')
+        .then(blockHeader => {
+            handleNewBlockHeaders(blockHeader);
+            resolve()
+        })
+        .catch((error) => {
+            console.error('Error al obtener el último bloque:', error);
+        });
     })
+
+}
+
+function executeLastBlockAndEvent(){
+    lastBlock()
+    .then(() => {
+        blocksEvent();
+      })
     .catch((error) => {
-        console.error('Error al obtener el último bloque:', error);
+        console.error('Error al ejecutar lastBlock y blocksEvent:', error);
     });
 }
 
-export {blocksEvent, lastBlock};
+export {executeLastBlockAndEvent};
