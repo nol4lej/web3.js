@@ -1,30 +1,40 @@
 import { web3 } from "./connections.js";
 
+const current_block = document.getElementById("current_block");
+const block_miner = document.getElementById("block_miner");
+const hash_block = document.getElementById("hash_block");
+const gas = document.getElementById("gas");
+
 // Función para manejar el evento newBlockHeaders
 function handleNewBlockHeaders(blockHeader) {
-    const blockNumber = blockHeader.number;
-    const hash = blockHeader.hash;
-    const gasUsed = blockHeader.gasUsed;
-    const miner = blockHeader.miner;
-    console.log(blockNumber);
-    console.log("Block hash:",hash)
-    console.log("Gas:", gasUsed)
-    console.log("Miner:", miner);
-  }
+    const { number, hash, miner, gasUsed } = blockHeader;
+
+    current_block.textContent = number;
+    block_miner.textContent = miner;
+    hash_block.textContent = hash;
+    gas.textContent = gasUsed;
+}
   
 
 function blocksEvent(){
     // Suscribirse al evento newBlockHeaders
-    web3.eth.subscribe('newBlockHeaders', (error, result) => {
-        if (error) {
-            console.error('Error al suscribirse al evento newBlockHeaders:', error);
-        };
+    web3.eth.subscribe('newBlockHeaders')
+    .on('data', blockHeader => {
+      handleNewBlockHeaders(blockHeader);
     })
-        .on('data', handleNewBlockHeaders)
-        .on('error', error => {
-            console.error('Error en el evento newBlockHeaders:', error);
-        });
+    .on('error', error => {
+      console.error('Error en el evento newBlockHeaders:', error);
+    });
 }
 
+function lastBlock(){
+    web3.eth.getBlock('latest')
+    .then(blockHeader => {
+        handleNewBlockHeaders(blockHeader);
+    })
+    .catch((error) => {
+        console.error('Error al obtener el último bloque:', error);
+    });
+}
 
-export {blocksEvent};
+export {blocksEvent, lastBlock};

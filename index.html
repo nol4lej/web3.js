@@ -4,11 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
 
     <title>Document</title>
 </head>
 <body>
+
+    <header id="header">
+        <div class="">
+            <h1>Testing dApp</h1>
+        </div>
+        <div class="blockchain_data">
+            <div class="">
+                <span id="blockchain"></span>
+            </div>
+            <div class="">Lastest Block: <span id="current_block"></span></div>
+            <div class="">Miner: <span id="block_miner"></span></div>
+            <div class="">Hash: <span id="hash_block"></span></div>
+            <div class="">Gas used: <span id="gas"></span></div>
+
+        </div>
+    </header>
+
     <div class="">
         <button id="connect_wallet">Connect wallet</button>
         <button id="add_chain">Add Moonbase Alpha Testnet</button>
@@ -25,6 +42,15 @@
             <label for="">Mensaje:</label>
             <input type="text" id="input_msg">
             <button id="submit_verify_sign">Verificar firma</button>
+        </div>
+        <div class="">
+            <button id="create_wallet">Crear Wallet</button>
+        </div>
+        <div class="">
+            <label for="">Enviar DEV:</label>
+            <input type="text" id="trans_to">
+            <input type="number" id="value_transaction">
+            <button id="submit_transaction">Enviar transaccion</button>
         </div>
     </div>
 </body>

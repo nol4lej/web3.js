@@ -1,13 +1,14 @@
 // Importa la biblioteca Web3.js - Solo se puede importar al utilizar node.js
 // const Web3 = require('web3');
-import { blocksEvent } from "./blockchain_data.js";
+import { blocksEvent, lastBlock } from "./blockchain_data.js";
 import { connectWallet, connect_button } from "./accounts.js" // CONECTAR WALLET PASO 1
 let web3; // scope global para posterior a darle valor poder exportar y reutilizar. 
 
 async function connectNetwork(){
-    await connecting()
-    // blocksEvent();
-    await verifyProvider() 
+    await connecting();
+    lastBlock()
+    blocksEvent();
+    await verifyProvider();
 }
 
 function connecting(){
@@ -16,7 +17,8 @@ function connecting(){
         // Verifica si la conexión es válida
         web3.eth.net.isListening()
         .then(() => {
-            resolve(console.log("Connected to Moonbase Alpha"));
+            document.getElementById("blockchain").textContent = "Connected to Moonbase";
+            resolve();
         })
         .catch(error => {
             reject(error);

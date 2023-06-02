@@ -8,7 +8,6 @@ const input_wallet = document.getElementById("input_wallet")
 const input_msg = document.getElementById("input_msg")
 const button_verify = document.getElementById("submit_verify_sign")
 
-
 async function signMessage(){
     const texTo_sign = input_sign.value;
     if(!texTo_sign){
@@ -40,4 +39,4 @@ async function verifySign(){
 
 button_verify.onclick = verifySign
 
-export {signMessage}
+export {signMessage, verifySign}
