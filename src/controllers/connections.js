@@ -28,7 +28,8 @@ function connecting(){
 function verifyProvider(){
     return new Promise((resolve, reject) => {
         if(!window.ethereum){
-            connect_button.textContent = "Install Wallet Provider";
+            connect_button.setAttribute("href", "https://metamask.io/download/")
+            connect_button.setAttribute("target", "_blank")
             providerChecker = false;
         }
     })

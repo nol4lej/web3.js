@@ -8,6 +8,7 @@ import { connectWallet} from "./src/controllers/accounts.js"
 function verifyChecker(){
     if(!providerChecker){
         connect_button.onclick = connectWallet;
+        connect_button.textContent = "Connect Wallet"
         console.log("Metamask Instalado")
     }
 }
