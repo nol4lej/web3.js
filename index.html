@@ -17,8 +17,12 @@
             <h1>Testing dApp</h1>
         </div>
         <div class="blockchain_data_container">
-            <div class="blockchain_status">
+            <div class="blockchain_status_buttons">
                 <span id="current_blockchain">Connecting Chain</span>
+                <div class="connect_add_buttons">
+                    <button id="connect_wallet">Connect wallet</button>
+                    <button id="add_chain"><img src="./src/img/metamask.png" alt=""> Add Moonbase Alpha</button>
+                </div>
             </div>
             <div class="blockchain_data">
                 <p class="">Lastest Block: <span id="current_block"></span></p>
@@ -29,33 +33,54 @@
         </div>
     </header>
 
-    <div class="">
-        <button id="connect_wallet">Connect wallet</button>
-        <button id="add_chain">Add Moonbase Alpha Testnet</button>
-        <div class="">
-            <label for="">Firmar un mensaje:</label>
-            <input type="text" id="input_sign">
-            <button id="submit_sign">Firmar</button>
-        </div>
-        <div class="">
-            <label for="">Hash:</label>
-            <input type="text" id="input_hash">
-            <label for="">Wallet emisor:</label>
-            <input type="text" id="input_wallet">
-            <label for="">Mensaje:</label>
-            <input type="text" id="input_msg">
-            <button id="submit_verify_sign">Verificar firma</button>
-        </div>
-        <div class="">
-            <button id="create_wallet">Crear Wallet</button>
-        </div>
-        <div class="">
-            <label for="">Enviar DEV:</label>
-            <input type="text" id="trans_to">
-            <input type="number" id="value_transaction">
-            <button id="submit_transaction">Enviar transaccion</button>
-        </div>
-    </div>
+    <main class="main">
+        <section class="transactions_container">
+            <div class="transactions_title">
+                <h1>Transactions</h1>
+            </div>
+            <div class="transactions_content">
+                <h4>Send DEV</h4>
+                <label for="">Transfer to (wallet):</label>
+                <input type="text" id="trans_to">
+                <label for="">Value (in DEV):</label>
+                <input type="number" id="value_transaction">
+                <button id="submit_transaction">Enviar transaccion</button>
+
+                <div class="transaction_result_container">
+                    <div class="status_container">
+                        <p id="transaction_status">Pending</p>
+                    </div>
+                    <span id="transaction_result"></span>
+                </div>
+            </div>
+        </section>
+        <section class="signs_container">
+            <div class="sings_title">
+                <h1>Signs </h1>
+            </div>
+            <div class="sign">
+                <label for="">Firmar un mensaje:</label>
+                <input type="text" id="input_sign">
+                <button id="submit_sign">Firmar</button>
+            </div>
+            <div class="sign_verify_container">
+                <label for="">Hash:</label>
+                <input type="text" id="input_hash">
+                <label for="">Wallet emisor:</label>
+                <input type="text" id="input_wallet">
+                <label for="">Mensaje:</label>
+                <input type="text" id="input_msg">
+                <button id="submit_verify_sign">Verificar firma</button>
+            </div>
+        </section>
+
+        <section class="create_wallets">
+            <div class="">
+                <button id="create_wallet">Crear Wallet</button>
+            </div>
+        </section>
+
+    </main>
 </body>
 
 <script type="module" src="index.js"></script>
