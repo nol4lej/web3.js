@@ -1,13 +1,13 @@
-// Importa la biblioteca Web3.js - Solo se puede importar al utilizar node.js
-// const Web3 = require('web3');
 import { executeLastBlockAndEvent } from "./blockchain_data.js";
-import { connectWallet, connect_button } from "./accounts.js" // CONECTAR WALLET PASO 1
+
 let web3; // scope global para posterior a darle valor poder exportar y reutilizar. 
+let providerChecker; // boolean que se almacena si hay o no Ethereum provider.
+const connect_button = document.getElementById("connect_wallet");
 
 async function connectNetwork(){
     await connecting();
     executeLastBlockAndEvent();
-    await verifyProvider();
+    await verifyProvider()
 }
 
 function connecting(){
@@ -27,17 +27,15 @@ function connecting(){
 
 function verifyProvider(){
     return new Promise((resolve, reject) => {
-        if(window.ethereum){
-            connect_button.onclick = connectWallet; // CONECTAR WALLET PASO 2
-            resolve()
-        } else{
-            connect_button.textContent = "Install Wallet Provider"
-            // Desactivo reject para que no interrumpa a la funcion connectNetowrk() en caso no tener proveedor.
-            // reject(console.error("Instalar un proveedor."))
+        if(!window.ethereum){
+            connect_button.textContent = "Install Wallet Provider";
+            providerChecker = false;
         }
     })
 }
 
-export {web3, connectNetwork};
+connectNetwork()
+
+export {web3, connect_button, providerChecker};
 
 

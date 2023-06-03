@@ -1,7 +1,6 @@
 // const fs = require('fs');
 import { web3 } from "./connections.js";
 
-const connect_button = document.getElementById("connect_wallet");
 let currentAccount = null; // Se utiliza en connectWallet para almacenar la wallet que se conecta y posteriormente se utiliza en handleAccountsChanged para manejar la actualización de la wallet conectada actual.
 let accounts = []; // Creado para acceder a la cuenta conectada actual. Se utiliza en handleAccountsChanged.
 
@@ -31,34 +30,33 @@ async function connectWallet(){
     });
     currentAccount = account_connected[0]
             
-    fetch('../../users.json')
-    .then(data => data.json())
-    .then(respuesta => {
-        // PASO 2
-        controllerUsers(respuesta, currentAccount);
-    })
+    // fetch('../../users.json')
+    // .then(data => data.json())
+    // .then(respuesta => {
+    //     // PASO 2
+    //     controllerUsers(respuesta, currentAccount);
+    // })
 }
 
 // PASO 3
-async function controllerUsers(respuesta, account){
-    // PASO 4
-    await verifyAccount(respuesta, account);
-    const new_user = new User();
-    new_user.addUser(respuesta.length + 1, account)
-}
+// async function controllerUsers(respuesta, account){
+//     // PASO 4
+//     await verifyAccount(respuesta, account);
+//     const new_user = new User();
+//     new_user.addUser(respuesta.length + 1, account)
+// }
 
-// PASO 5
-function verifyAccount(array, account){
-    return new Promise((resolve, reject) => {
-        array.forEach(user => {
-            if(user.wallet === account){
-                reject(`Wallet ya existe:\nID: ${user.id}\nWallet: ${account}`)
-            }
-        });
-        resolve()
-    })
-
-}
+// // PASO 5
+// function verifyAccount(array, account){
+//     return new Promise((resolve, reject) => {
+//         array.forEach(user => {
+//             if(user.wallet === account){
+//                 reject(`Wallet ya existe:\nID: ${user.id}\nWallet: ${account}`)
+//             }
+//         });
+//         resolve()
+//     })
+// }
 
 async function getBalance(account){
     // Al utilizar web3.eth.getBalance(account), estás realizando una consulta directamente a la blockchain para obtener el saldo de una cuenta específica.
@@ -103,8 +101,4 @@ window.ethereum.request({ method: 'eth_accounts' })
         console.error(err);
     });
 
-
-
-
-
-export {connectWallet, connect_button, currentAccount};
+export {connectWallet, currentAccount};

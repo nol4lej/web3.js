@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-button{
+button, a{
     cursor: pointer;
 }
 
@@ -34,7 +34,15 @@ button{
     gap: 5px;
 }
 
-.connect_add_buttons button{
+#add_chain{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: max-content;
+    padding: 0.5em;
+}
+
+#connect_wallet{
     display: flex;
     align-items: center;
     gap: 5px;
