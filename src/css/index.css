@@ -38,15 +38,34 @@ button{
 }
 
 .blockchain_data p{
-    border: 1px solid red;
     display: flex;
     align-items: center;
     position: relative;
+    padding: 0.5em;
+    border: 1px solid red;
 }
 
 #copy_icon{
     display: none;
-    border: 1px solid blue;
-    position: absolute; right: 0;
+    position: absolute; 
+    right: 5px;
     font-size: 18px;
+    transition: font-size 0.2s ease-in-out;
+    border: 1px solid black;
+    background: none;
+    border: none;
+}
+
+#copy_icon:hover{
+    font-size: 20px;
+}
+
+.copied1 , .copied2{
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2px;
 }

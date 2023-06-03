@@ -17,14 +17,20 @@ function handleNewBlockHeaders(blockHeader) {
 
     // Recorre el array 
     iconsArray.forEach((icon) => {
+        let idCopied;
         icon.style.display = "block";
+        const copiedElement = document.querySelector(`.copied${idCopied}`)
+        // console.log(copiedElement)
         // Si icon.name es igual a miner, entonces miner, sino hash.
         const id_value = icon.name === "miner" ? miner : hash;
         icon.addEventListener("click", () => {
             // El método writeText() de navigator.clipboard se utiliza para escribir texto en el portapapeles y este método devuelve una promesa.
             navigator.clipboard.writeText(id_value)
             .then(() => {
-                console.log("Texto copiado al portapapeles: " + id_value);
+                copiedElement.style.display = "block";
+                setTimeout(() => {
+                    copiedElement.style.display = "none"; // Oculta el elemento "copied" después de 0.5 segundos
+                }, 500);    
             })
             .catch((error) => {
                 console.error("Error al copiar al portapapeles: ", error);
