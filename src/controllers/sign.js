@@ -1,5 +1,6 @@
-import { currentAccount } from "./accounts.js";
-import { web3 } from "./connections.js";
+import { currentAccount } from "./4accounts.js";
+import { web3 } from "./1connections.js";
+import { provider } from "./3verify_provider.js";
 
 const input_sign = document.getElementById("input_sign");
 const button_sign = document.getElementById("submit_sign");
@@ -13,7 +14,7 @@ button_sign.addEventListener("click", () =>{
     if(!texTo_sign){
         console.log("No hay texto para firmar.")
     } else{
-        window.ethereum.request({ 
+        provider.request({ 
             method: 'personal_sign',
             params: [texTo_sign, currentAccount, '']
         })

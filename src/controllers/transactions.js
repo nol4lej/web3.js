@@ -1,5 +1,6 @@
-import { currentAccount } from "./accounts.js";
-import { web3 } from "./connections.js";
+import { currentAccount } from "./4accounts.js";
+import { web3 } from "./1connections.js";
+import { provider } from "./3verify_provider.js";
 
 const value_transaction = document.getElementById("value_transaction")
 const submit_transaction = document.getElementById("submit_transaction")
@@ -11,7 +12,7 @@ submit_transaction.addEventListener("click", function (){
     if(value_transaction.value > 0){
         // 1 eth = 1000000000000000000 wei
         const valorHex = web3.utils.toHex("1000000000000000000" * value_transaction.value)
-        window.ethereum.request({ 
+        provider.request({ 
             method: "eth_sendTransaction",
             params: [{
                 from: currentAccount,

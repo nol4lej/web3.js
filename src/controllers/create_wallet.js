@@ -1,4 +1,4 @@
-import { web3 } from "./connections.js";
+import { web3 } from "./1connections.js";
 
 const create_wallet = document.getElementById("create_wallet")
 function createWallet(){

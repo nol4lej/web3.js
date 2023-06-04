@@ -1,4 +1,4 @@
-import { web3 } from "./connections.js";
+import { web3 } from "./1connections.js";
 
 const current_block = document.getElementById("current_block");
 const block_miner = document.getElementById("block_miner");
