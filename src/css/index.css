@@ -8,6 +8,10 @@ button, a{
     cursor: pointer;
 }
 
+.header{
+    padding: 0 2em 2em 2em;
+}
+
 .tittle_container{
     border: 1px solid red;
     display: flex;
@@ -19,9 +23,12 @@ button, a{
     display: flex;
     flex-direction: column;
     font-size: 20px;
+    gap: 1em;
+    padding: 2em 0 0 0;
 }
 
 .blockchain_status_buttons{
+    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,14 +41,6 @@ button, a{
     gap: 5px;
 }
 
-#add_chain{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    width: max-content;
-    padding: 0.5em;
-}
-
 #connect_wallet{
     display: flex;
     align-items: center;
@@ -50,19 +49,73 @@ button, a{
     padding: 0.5em;
 }
 
-#add_chain img{
-    width: 24px;
-    height: 24px;
+.account_data_container{
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.5em;
+    gap: 1em;
 }
+
+.wallet_data, .balance_data{
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    gap: 0.5em;
+    position: relative;
+}
+
 
 .blockchain_data{
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 1em;
+    border: 1px solid red;
 }
 
-.blockchain_data p{
+.connect_chain{
+    display: flex;
+    justify-content: space-around;
+    gap: 1em;
+    font-size: 16px;
+}
+
+#current_blockchain{
+    text-align: center;
+    color: #db9a04;
+    background-color: rgba(219,154,4,.1);
+    padding: 0.5em;
+    transition: all 0.5s ease-in-out;
+    border-radius: 5px;
+}
+
+#current_blockchain.active{
+    color: #00c9a7;
+    background-color: rgba(0,201,167,.1);
+}
+
+#add_chain{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: max-content;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+#add_chain:hover{
+    background-color: #00c9a7;
+}
+
+#add_chain img{
+    width: 24px;
+    height: 24px;
+}
+
+.blockchain_data div{
     display: flex;
     align-items: center;
     position: relative;
@@ -70,8 +123,8 @@ button, a{
     border: 1px solid red;
 }
 
-#copy_icon{
-    display: none;
+#copy_miner, #copy_hash, #copy_wallet{
+    /* display: none; */
     position: absolute; 
     right: 5px;
     font-size: 18px;
@@ -81,18 +134,24 @@ button, a{
     border: none;
 }
 
-#copy_icon:hover{
+#copy_miner:hover, #copy_hash:hover, #copy_wallet:hover{
     font-size: 20px;
 }
 
-.copied1 , .copied2{
+#copied_miner , #copied_hash, #copied_wallet{
     display: none;
     position: absolute;
     right: 0;
     bottom: -15px;
-    border: 1px solid black;
+    color: #00c9a7;
+    background-color: rgba(0,201,167,.1);
     border-radius: 5px;
-    padding: 2px;
+    padding: 5px;
+}
+
+#copied_miner.active , #copied_hash.active, #copied_wallet.active{
+    display: block;
+    transition: all 0.5s;
 }
 
 .main{
@@ -108,6 +167,7 @@ button, a{
     display: flex;
     flex-direction: column;
     gap: 1em;
+    padding: 1em;
 }
 
 .transactions_title{
@@ -158,6 +218,7 @@ button, a{
     display: flex;
     flex-direction: column;
     gap: 1em;
+    padding: 1em;
 }
 
 .sings_title{
@@ -175,6 +236,82 @@ button, a{
 }
 
 /* END SIGNS END SIGNS END SIGNS END SIGNS */
+
+/* CREATE WALLET CREATE WALLET CREATE WALLET */
+.create_wallets{
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+}
+/* END CREATE WALLET END CREATE WALLET */
+
+@media screen and (max-width: 359px) {
+
+    .connect_add_buttons{
+        flex-direction: column;
+    }
+
+    .wallet_data, .balance_data{
+        flex-direction: column;
+    }
+
+    .blockchain_data div{
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 760px) {
+    .blockchain_data_container{
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .blockchain_data{
+        flex-basis: 50%;
+    }
+
+    .blockchain_status_buttons{
+        flex-basis: 50%;
+        height: max-content;
+    }
+
+    .main{
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .transactions_container{
+        flex-basis: 33.3%;
+    }
+
+    .signs_container{
+        flex-basis: 33.3%;
+    }
+
+    .create_wallets{
+        flex-basis: 33.3%;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+    .blockchain_data{
+        flex-basis: 40%;
+    }
+
+    .blockchain_status_buttons{
+        flex-basis: 40%;
+    }
+
+    .main{
+        padding-left: 10em;
+        padding-right: 10em;
+    }
+}
+
 
 .loader{
     border: 16px solid #f3f3f3;

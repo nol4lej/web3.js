@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <!-- <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./src/css/index.css">
 
@@ -12,26 +13,54 @@
 </head>
 <body>
 
-    <header id="header">
+    <header class="header">
         <div class="tittle_container">
             <h1>Testing dApp</h1>
         </div>
         <div class="blockchain_data_container">
             <div class="blockchain_status_buttons">
-                <span id="current_blockchain">Connecting Chain</span>
                 <div class="connect_add_buttons">
                     <a id="connect_wallet">Connect Wallet</a>
-                    <button id="add_chain"><img src="./src/img/metamask.png" alt=""> Add Moonbase Alpha</button>
                 </div>
-                <div class="">
-                    <span id="show_account"></span>
+                <div class="account_data_container">
+                    <div class="wallet_data">
+                        <i class="material-icons">account_balance_wallet</i>
+                        <span id="show_account"></span>
+                        <button id="copy_wallet" class="material-icons">content_copy</button>
+                        <span id="copied_wallet">Copied!</span>
+                    </div>
+                    <div class="balance_data">
+                        <i class="material-icons">savings</i>
+                        <span id="show_balance"></span>
+                    </div>
                 </div>
             </div>
             <div class="blockchain_data">
-                <p class="">Lastest Block: <span id="current_block"></span></p>
-                <p class="">Miner: <span id="block_miner"></span><button id="copy_icon" class="material-icons" name="miner">content_copy</button><span class="copied1">Copied!</span></p>
-                <p class="">Hash: <span id="hash_block"></span><button id="copy_icon" class="material-icons" name="hash">content_copy</button><span class="copied2">Copied!</span></p>
-                <p class="">Gas used: <span id="gas"></span></p>
+                <div class="connect_chain">
+                    <span id="current_blockchain">Connecting Chain</span>
+                    <button id="add_chain"><img src="./src/img/metamask.png" alt=""><p>Connect to Moonbase</p></button>
+                </div>
+                
+                <div class="">
+                    <h4>Lastest Block:</h4>
+                    <span id="current_block"></span>
+                </div>
+                <div class="">
+                    <h4>Miner:</h4>  
+                    <span id="block_miner"></span>
+                    <button id="copy_miner" class="material-icons">content_copy</button>
+                    <span id="copied_miner">Copied!</span>
+                </div>
+                <div class="">
+                    <h4>Hash:</h4>
+                    <span id="hash_block"></span>
+                    <button id="copy_hash" class="material-icons">content_copy</button>
+                    <span id="copied_hash">Copied!</span>
+                </div>
+                <div class="">
+                    <h4>Gas used:</h4>
+                    <span id="gas"></span>
+                </div>
             </div>
         </div>
     </header>
@@ -78,8 +107,14 @@
         </section>
 
         <section class="create_wallets">
+            <div class="create_Wallets_title">
+                <h1>Create Wallet</h1>
+            </div>
             <div class="">
                 <button id="create_wallet">Crear Wallet</button>
+            </div>
+            <div class="">
+                
             </div>
         </section>
 

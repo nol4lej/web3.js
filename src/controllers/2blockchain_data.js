@@ -4,39 +4,37 @@ const current_block = document.getElementById("current_block");
 const block_miner = document.getElementById("block_miner");
 const hash_block = document.getElementById("hash_block");
 const gas = document.getElementById("gas");
-const iconsArray = document.querySelectorAll("#copy_icon");
+const copy_miner = document.getElementById("copy_miner")
+const copy_hash = document.getElementById("copy_hash")
 
 // Función para manejar el evento newBlockHeaders
 function handleNewBlockHeaders(blockHeader) {
     const { number, hash, miner, gasUsed } = blockHeader;
 
     current_block.textContent = number;
-    block_miner.textContent = miner.slice(0, -32)+"..."+miner.slice(-8);
-    hash_block.textContent = hash.slice(0, -56)+"..."+hash.slice(-8);
+    block_miner.textContent = miner.slice(0, -36)+"..."+miner.slice(-4);
+    hash_block.textContent = hash.slice(0, -60)+"..."+hash.slice(-4);
     gas.textContent = gasUsed;
 
-    // Recorre el array 
-    iconsArray.forEach((icon) => {
-        let idCopied;
-        icon.style.display = "block";
-        const copiedElement = document.querySelector(`.copied${idCopied}`)
-        // console.log(copiedElement)
-        // Si icon.name es igual a miner, entonces miner, sino hash.
-        const id_value = icon.name === "miner" ? miner : hash;
-        icon.addEventListener("click", () => {
-            // El método writeText() de navigator.clipboard se utiliza para escribir texto en el portapapeles y este método devuelve una promesa.
-            navigator.clipboard.writeText(id_value)
-            .then(() => {
-                copiedElement.style.display = "block";
-                setTimeout(() => {
-                    copiedElement.style.display = "none"; // Oculta el elemento "copied" después de 0.5 segundos
-                }, 500);    
-            })
-            .catch((error) => {
-                console.error("Error al copiar al portapapeles: ", error);
-            });
-        })
-    });
+
+    // navigator.clipboard.writeText no funciona si la conexion no es segura.
+    copy_miner.addEventListener("click", () => {
+        navigator.clipboard.writeText(miner)
+        const copied_miner = document.getElementById("copied_miner");
+        copied_miner.classList.add("active")
+        setTimeout(function() {
+            copied_miner.classList.remove('active');
+          }, 1000);
+    })
+    copy_hash.addEventListener("click", () => {
+        navigator.clipboard.writeText(hash)
+        const copied_hash = document.getElementById("copied_hash");
+        copied_hash.classList.add("active")
+        setTimeout(function() {
+            copied_hash.classList.remove('active');
+          }, 1000);
+    })
+
 }
 
 function blocksEvent(){

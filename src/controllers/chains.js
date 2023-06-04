@@ -1,4 +1,4 @@
-import { provider } from "./3verify_provider.js";
+import { provider } from "./3accounts.js";
 
 const add_chain_button = document.getElementById("add_chain")
 
@@ -25,15 +25,17 @@ function verifyChainHandler(){
           blockExplorerUrls: [blockExplorerUrl],
         }],
       })
-      .then(() => {
-        console.log('Red agregada correctamente a la wallet.');
-      })
+      // .then(() => {
+      //   console.log('Red agregada correctamente a la wallet.');
+      // })
       .catch((error) => {
         console.error('Error al agregar la red a la wallet:', error);
       });
     })
     
+    // Evento para detectar si se a cambiado la chain.
     provider.on('chainChanged', handleChainChanged);
+    // Funcion que se activa al cambiar de chain, si la chain es distinta a 0x507 aparece un mensaje
     async function handleChainChanged(){
       const currentChain = await provider.request({ method: 'eth_chainId'})
       if(currentChain !== "0x507"){

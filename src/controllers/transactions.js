@@ -1,6 +1,5 @@
-import { currentAccount } from "./4accounts.js";
+import { currentAccount, provider } from "./3accounts.js";
 import { web3 } from "./1connections.js";
-import { provider } from "./3verify_provider.js";
 
 const value_transaction = document.getElementById("value_transaction")
 const submit_transaction = document.getElementById("submit_transaction")
