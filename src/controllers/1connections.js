@@ -26,6 +26,7 @@ function connecting(){
 
 connectNetwork()
 
-export {web3};
+export {web3, connecting};
+// Se exporta connecting para importar en 3accounts.js y esperar la promesa de connecting, si la promesa rechaza, no permite conectar la wallet.
 
 

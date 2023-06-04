@@ -1,5 +1,6 @@
-import MetaMaskSDK from '/node_modules/@metamask/sdk/dist/browser/es/metamask-sdk.js';
+// import MetaMaskSDK from '/node_modules/@metamask/sdk/dist/browser/es/metamask-sdk.js';
 import { web3 } from "./1connections.js";
+import { connecting } from './1connections.js';
 
 export let provider;
 export let currentAccount = null; // Se utiliza en connectWallet para almacenar la wallet que se conecta y posteriormente se utiliza en handleAccountsChanged para manejar la actualización de la wallet conectada actual.
@@ -9,11 +10,18 @@ let accounts = []; // Creado para acceder a la cuenta conectada actual. Se utili
 let show_account = document.getElementById("show_account");
 const copy_wallet = document.getElementById("copy_wallet")
 
+// Si la promesa de connecting es rechazada, no continua el resto del código, por lo que no permite conectar wallets.
+await connecting();
 
 // 1 - VERIFICAR PROVEEDOR (window.ethereum para desktop || provider = MMSDK.getProvider() dispositivos sin MetaMask y para Mobile)
+const opt = {
+    forceInjectProvider: true,
+}
+// console.log(MetaMaskSDK);
 function verifyProvider(){
     if(!window.ethereum){
-        const MMSDK = new MetaMaskSDK()
+        // const MMSDK = new MetaMaskSDK.MetaMaskSDK(opt);
+        const MMSDK = new MetaMaskSDK.MetaMaskSDK();
         provider = MMSDK.getProvider()
         connect_button.onclick = connectWallet;
     } else {
