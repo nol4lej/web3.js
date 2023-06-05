@@ -9,7 +9,6 @@ const show_balance = document.getElementById("show_balance");
 let accounts = []; // Creado para acceder a la cuenta conectada actual. Se utiliza en handleAccountsChanged.
 let show_account = document.getElementById("show_account");
 const copy_wallet = document.getElementById("copy_wallet");
-const connect_modal = document.getElementById("connect_modal"); 
 
 
 await connectProvider()

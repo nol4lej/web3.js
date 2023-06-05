@@ -49,29 +49,33 @@ button, a{
     padding: 0.5em;
 }
 
-.connect_modal{
+.connect_modal {
     position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: none; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
     text-align: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.connect_modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .modal_content{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #00c9a7;
     border: 1px solid red;
-    margin: 2em;
     padding: 2em;
-    position: relative;
     border-radius: 10px;
 }
 
@@ -328,6 +332,7 @@ button, a{
         flex-basis: 50%;
         height: max-content;
     }
+
 
     .main{
         flex-direction: row;

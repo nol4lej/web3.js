@@ -3,12 +3,20 @@ const connect_modal = document.getElementById("connect_modal");
 const close_modal = document.getElementById("close_modal");
 
 connect_wallet.addEventListener("click", () => {
-    connect_modal.style.display = "flex";
     document.body.style.overflow = "hidden";
+    connect_modal.classList.add("active")
 });
 
 close_modal.addEventListener("click", closeModal);
-export function closeModal(){
-    connect_modal.style.display = "none";
+function closeModal(){
+    connect_modal.classList.remove("active");
     document.body.style.overflow = "auto";
 }
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+});
+
+export {closeModal}

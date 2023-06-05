@@ -14,11 +14,14 @@ function connectProvider(){
         trustWalletButton.onclick = async () => {
             provider = getTrustWalletFromWindow();
             if (provider) {
+                window.open('trust://', '_blank');
                 await connectWallet(provider);
                 resolve()
             } else {
-                reject()    
+                window.open('https://trustwallet.com/download', '_blank');
                 console.log('Trust Wallet no detectado');
+                reject()    
+                
             }
         };
 
