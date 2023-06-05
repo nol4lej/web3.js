@@ -1,4 +1,4 @@
-import { provider } from "./3accounts.js";
+import { provider } from "./3connect_provider.js";
 
 const add_chain_button = document.getElementById("add_chain")
 
@@ -11,7 +11,7 @@ const blockExplorerUrl = 'https://moonbase.moonscan.io/';
 function verifyChainHandler(){
   if(provider){
     add_chain_button.addEventListener("click", () => {
-      window.ethereum.request({
+      provider.request({
         method: 'wallet_addEthereumChain',
         params: [{
           chainId,
@@ -25,9 +25,9 @@ function verifyChainHandler(){
           blockExplorerUrls: [blockExplorerUrl],
         }],
       })
-      // .then(() => {
-      //   console.log('Red agregada correctamente a la wallet.');
-      // })
+      .then(() => {
+        console.log('Red agregada correctamente a la wallet.');
+      })
       .catch((error) => {
         console.error('Error al agregar la red a la wallet:', error);
       });

@@ -49,6 +49,58 @@ button, a{
     padding: 0.5em;
 }
 
+.connect_modal{
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.modal_content{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background-color: #00c9a7;
+    border: 1px solid red;
+    margin: 2em;
+    padding: 2em;
+    position: relative;
+    border-radius: 10px;
+}
+
+.modal_exit_button{
+    padding: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+}
+
+.modal_buttons{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+#metamask_button, #trust_wallet_button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3em;
+}
+
+#metamask_button img, #trust_wallet_button img{
+    width: 50px;
+    height: 50px;
+}
+
 .account_data_container{
     border: 1px solid red;
     display: flex;

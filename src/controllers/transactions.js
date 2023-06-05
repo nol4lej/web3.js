@@ -1,4 +1,5 @@
-import { currentAccount, provider } from "./3accounts.js";
+import { currentAccount} from "./4accounts.js";
+import { provider } from "./3connect_provider.js";
 import { web3 } from "./1connections.js";
 
 const value_transaction = document.getElementById("value_transaction")

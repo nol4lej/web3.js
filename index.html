@@ -21,6 +21,28 @@
             <div class="blockchain_status_buttons">
                 <div class="connect_add_buttons">
                     <a id="connect_wallet">Connect Wallet</a>
+                    <div class="connect_modal" id="connect_modal">
+                        <div class="modal_content">
+                            <div class="modal_exit_button">
+                                <button class="material-icons" id="close_modal">close</button>
+                            </div>
+                            <div class="modal_header">
+                                <div class="modal_title">
+                                    <h1>Choose Provider</h1>
+                                </div>
+                            </div>
+                            <div class="modal_buttons">
+                                <a id="metamask_button">
+                                    <img src="./src/img/metamask_connect.png" alt="">
+                                    <h4>Metamask</h4>
+                                </a>
+                                <a id="trust_wallet_button">
+                                    <img src="./src/img/trustwallet.png" alt="">
+                                    <h4>Trust Wallet</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="account_data_container">
                     <div class="wallet_data">
@@ -64,6 +86,8 @@
             </div>
         </div>
     </header>
+
+
 
     <main class="main">
         <section class="transactions_container">
@@ -122,8 +146,9 @@
 </body>
 
 <script type="module" src="index.js"></script>
-<script type="module" src="./src/controllers/1connections.js"></script> 
-<script type="module" src="./src/controllers/3accounts.js"></script>
+<script type="module" src="./src/controllers/1connections.js"></script>
+<script type="module" src="./src/controllers/3connect_provider.js"></script> 
+<script src="./src/controllers/modal_connect.js"></script>
 
 
 </html>
