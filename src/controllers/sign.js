@@ -2,6 +2,7 @@ import { currentAccount } from "./4accounts.js";
 import { provider } from "./3connect_provider.js";
 import { web3 } from "./1connections.js";
 import { handleChainChanged } from "./5chains.js";
+import { errorModal } from "./error_chain_modal.js";
 
 const input_sign = document.getElementById("input_sign");
 const button_sign = document.getElementById("submit_sign");
@@ -15,13 +16,14 @@ const copy_sign = document.getElementById("copy_sign");
 const content_verify_sign = document.getElementById("content_verify_sign");
 const verify_sign = document.getElementById("verify_sign");
 
+
 let signatureHash;
 
 button_sign.addEventListener("click", async () =>{
     await handleChainChanged();
     const texTo_sign = input_sign.value;
     if(!texTo_sign){
-        console.log("No hay texto para firmar.")
+        errorModal("Invalid message")
     } else{
         provider.request({ 
             method: 'personal_sign',
@@ -51,9 +53,15 @@ button_verify.addEventListener("click", async () => {
     const hash = input_hash.value;
     const wallet = input_wallet.value;
     const message = input_msg.value;
-    if(!hash || !message){
-        console.log("No hay hash para verificar")
-    } else{
+    if (!hash || !message || !wallet) {
+        if (!hash) {
+            errorModal('Please enter a hash');
+        } else if (!message) {
+            errorModal('Please enter a message');
+        } else if (!wallet) {
+            errorModal('Please enter a wallet');
+        }
+      } else {
         const resultado = web3.eth.accounts.recover(message, hash)
         const validez = resultado.toLowerCase() === wallet.toLowerCase() ? "Firma valida" : "Firma invalida";
         content_verify_sign.style.display = "flex";

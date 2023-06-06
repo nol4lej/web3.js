@@ -31,12 +31,19 @@ input{
 }
 
 .general_button{
+    cursor: pointer;
     width: max-content;
-    padding: 0.5em;
+    padding: 0.7em;
     border: 1px solid var(--bg-input-border);
     border-radius: 5px;
     background-color: var(--button);
     transition: background 0.5s ease-in-out;
+}
+
+.general_button:disabled, #add_chain:disabled{
+    opacity: 0.6; /* Reduce la opacidad para simular estado desactivado */
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+    pointer-events: none; /* Evita que se pueda hacer clic o interactuar con el botón */
 }
 
 .general_button:hover{
@@ -88,7 +95,23 @@ button, a{
 
 .connect_add_buttons{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     gap: 5px;
+}
+
+#connect_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 16px;
+    width: 80%; 
+}
+
+#connect_info p, #connect_info i{
+    color: #db9a04;
 }
 
 #connect_wallet{
@@ -96,7 +119,8 @@ button, a{
     align-items: center;
     gap: 5px;
     width: max-content;
-    padding: 0.5em;
+    font-size: 20px;
+    padding: 1em;
 }
 
 .connect_modal {
@@ -514,7 +538,6 @@ button, a{
 
     .main{
         flex-direction: row;
-        width: 100%;
         justify-content: center;
     }
 
@@ -560,4 +583,29 @@ button, a{
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+#error_chain_modal{
+    position: fixed;
+    z-index: 999;
+    right: 0;
+    top: 5em;
+    padding: 1em;
+    background-color: var(--button);
+    border-radius: 10px 0 0 10px;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.error_content{
+    display: flex;
+    gap: 0.5em;
+}
+
+.error_content div{
+    color:#db9a04;
+}
+
+#error_chain_modal.active{
+    transform: translateX(0);
 }

@@ -2,6 +2,7 @@ import { currentAccount} from "./4accounts.js";
 import { provider } from "./3connect_provider.js";
 import { web3 } from "./1connections.js";   
 import { handleChainChanged } from "./5chains.js";
+import { errorModal } from "./error_chain_modal.js";
 
 const value_transaction = document.getElementById("value_transaction");
 const submit_transaction = document.getElementById("submit_transaction");
@@ -32,7 +33,7 @@ submit_transaction.addEventListener("click", async () => {
                 try {
                     const receipt = await web3.eth.getTransactionReceipt(transactionHash);
                     if (receipt) {
-                        console.log("Recibo de la transacción:", receipt);
+                        // console.log("Recibo de la transacción:", receipt);
                         transaction_status.classList.add("success");
                         transaction_status.textContent = "● Success";
                         return;
@@ -48,11 +49,11 @@ submit_transaction.addEventListener("click", async () => {
         })
         .catch(error => {
             if(error.code === -32602){
-                console.log("Invalid address")
+                errorModal("Invalid wallet address")
             }
         })
     } else {
-        console.log("Debes ingresar una cantidad para transferir.")
+        errorModal("Enter a valid amount")
     }
 })
 

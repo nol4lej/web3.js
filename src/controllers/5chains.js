@@ -1,4 +1,5 @@
 import { provider } from "./3connect_provider.js";
+import { errorModal } from "./error_chain_modal.js";
 
 const add_chain_button = document.getElementById("add_chain");
 
@@ -23,9 +24,6 @@ add_chain_button.addEventListener("click", () => {
       blockExplorerUrls: [blockExplorerUrl],
     }],
   })
-  .then(() => {
-    console.log('Red agregada correctamente a la wallet.');
-  })
   .catch((error) => {
     console.error('Error al agregar la red a la wallet:', error);
   });
@@ -38,7 +36,7 @@ export function handleChainChanged() {
   return new Promise(async (resolve, reject) => {
     const currentChain = await provider.request({ method: 'eth_chainId' });
     if (currentChain !== "0x507") {
-      reject(console.log("Please connect to Moonbase"));
+      reject(errorModal("Please connect to Moonbase"));
     } else {
       resolve()
     }

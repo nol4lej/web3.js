@@ -13,14 +13,26 @@
 </head>
 <body>
 
+    <div id="error_chain_modal">
+        <div class="error_content">
+            <div class="material-icons">error</div>
+            <p id="text_error"></p> 
+        </div>
+    </div>
+
     <header class="header">
         <div class="tittle_container">
             <h1>Testing dApp</h1>
+
         </div>
         <div class="blockchain_data_container">
             <div class="blockchain_status_buttons">
                 <div class="connect_add_buttons">
-                    <a id="connect_wallet">Connect Wallet</a>
+                    <button id="connect_wallet" class="general_button">Connect Wallet</button>
+                    <div id="connect_info">
+                        <i class="material-icons">info</i>
+                        <p>Connect your wallet to interact</p>
+                    </div>
                     <div class="connect_modal" id="connect_modal">
                         <div class="modal_content">
                             <div class="modal_exit_button">
@@ -60,7 +72,7 @@
             <div class="blockchain_data">
                 <div class="connect_chain">
                     <span id="current_blockchain">● Connecting Chain</span>
-                    <button id="add_chain"><img src="./src/img/metamask.png" alt=""><p>Add Moonbase</p></button>
+                    <button id="add_chain" disabled><img src="./src/img/metamask.png" alt=""><p>Add Moonbase</p></button>
                 </div>
                 
                 <div class="bc_container_data">
@@ -100,7 +112,7 @@
                 <input type="text" id="trans_to">
                 <label for="">Value (in DEV):</label>
                 <input type="number" min="0" step="any" id="value_transaction">
-                <button id="submit_transaction" class="general_button">Enviar transaccion</button>
+                <button id="submit_transaction" class="general_button" disabled>Send transaction</button>
 
                 <div class="transaction_result_container">
                     <div class="status_container">
@@ -117,7 +129,7 @@
             <div class="sign">
                 <label for="">Sign a message:</label>
                 <input type="text" id="input_sign">
-                <button id="submit_sign" class="general_button">Sign</button>
+                <button id="submit_sign" class="general_button" disabled>Sign</button>
                 <div id="content_sign_hash">
                     <div class="" id="sign_Hash"></div>
                     <button id="copy_sign" class="material-icons">content_copy</button>
@@ -131,7 +143,7 @@
                 <input type="text" id="input_wallet">
                 <label for="">Message:</label>
                 <input type="text" id="input_msg">
-                <button id="submit_verify_sign" class="general_button">Verify sign</button>
+                <button id="submit_verify_sign" class="general_button" disabled>Verify sign</button>
                 <div id="content_verify_sign">
                     <div id="verify_sign"></div>
                 </div>
@@ -143,7 +155,7 @@
                 <h1>Create Wallet</h1>
             </div>
             <div class="create_button_container">
-                <button id="create_wallet" class="general_button">Create Wallet</button>
+                <button id="create_wallet" class="general_button" disabled>Create Wallet</button>
             </div>
             <div id="wallets_created">
                 <div class="keys_container">
@@ -168,6 +180,8 @@
     <footer class="footer">
         <h4>Created by Nolasco Medina</h4>
     </footer>
+
+
 
 </body>
 

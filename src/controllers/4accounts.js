@@ -3,12 +3,14 @@ import { web3 } from "./1connections.js";
 import { provider } from "./3connect_provider.js";
 import { connectProvider } from "./3connect_provider.js";
 import { closeModal } from "./modal_connect.js";
+import { activeButtons, disableButtons } from "./active_buttons.js";
 
 export let currentAccount = null; // Se utiliza en connectWallet para almacenar la wallet que se conecta y posteriormente se utiliza en handleAccountsChanged para manejar la actualización de la wallet conectada actual.
 const show_balance = document.getElementById("show_balance");
 let accounts = []; // Creado para acceder a la cuenta conectada actual. Se utiliza en handleAccountsChanged.
 let show_account = document.getElementById("show_account");
 const copy_wallet = document.getElementById("copy_wallet");
+const connect_info = document.getElementById("connect_info");
 
 
 await connectProvider()
@@ -34,6 +36,8 @@ export async function connectWallet(provider){
             currentAccount = account_connected[0];
             show_account.textContent = currentAccount.slice(0, -35) + "..." + currentAccount.slice(-4);
             getBalance(currentAccount)
+            connect_info.style.display = "none"
+            activeButtons();
             closeModal()
             resolve()
         } catch (error) {
@@ -67,6 +71,8 @@ function handleAccountsChanged(newAccount) {
         console.log('Please connect to MetaMask.');
         show_account.textContent = "";
         show_balance.textContent = "";
+        connect_info.style.display = "flex";
+        disableButtons()
     } else if (accounts[0] !== currentAccount) {
         currentAccount = accounts[0];
         getBalance(currentAccount);
