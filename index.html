@@ -117,7 +117,12 @@
             <div class="sign">
                 <label for="">Firmar un mensaje:</label>
                 <input type="text" id="input_sign">
-                <button id="submit_sign">Firmar</button>
+                <button id="submit_sign" class="general_button">Firmar</button>
+                <div id="content_sign_hash">
+                    <div class="" id="sign_Hash"></div>
+                    <button id="copy_sign" class="material-icons">content_copy</button>
+                </div>
+                
             </div>
             <div class="sign_verify_container">
                 <label for="">Hash:</label>
@@ -126,7 +131,10 @@
                 <input type="text" id="input_wallet">
                 <label for="">Mensaje:</label>
                 <input type="text" id="input_msg">
-                <button id="submit_verify_sign">Verificar firma</button>
+                <button id="submit_verify_sign" class="general_button">Verificar firma</button>
+                <div id="content_verify_sign">
+                    <div id="verify_sign"></div>
+                </div>
             </div>
         </section>
 
@@ -135,7 +143,7 @@
                 <h1>Create Wallet</h1>
             </div>
             <div class="">
-                <button id="create_wallet">Crear Wallet</button>
+                <button id="create_wallet" class="general_button">Crear Wallet</button>
             </div>
             <div class="">
 
@@ -143,6 +151,11 @@
         </section>
 
     </main>
+
+    <footer class="footer">
+        <h4>Created by Nolasco Medina</h4>
+    </footer>
+
 </body>
 
 <script type="module" src="index.js"></script>

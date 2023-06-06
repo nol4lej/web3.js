@@ -24,6 +24,12 @@ input{
     border-radius: 5px;
 }
 
+.material-icons{
+    color: var(--button);
+    background: none;
+    border: none;
+}
+
 .general_button{
     width: max-content;
     padding: 0.5em;
@@ -41,13 +47,6 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }   
-
-.material-icons{
-    color: var(--button);
-    border: 2px solid var(--button);
-    border-radius: 50%;
-    padding: 0.2em;
-}
 
 body{
     background-color: var(--bg-color);
@@ -185,6 +184,13 @@ button, a{
     gap: 0.5em;
     position: relative;
     background-color: var(--bg-input);
+}
+
+.wallet_data .material-icons, .balance_data .material-icons{
+
+    border: 2px solid var(--button);
+    border-radius: 50%;
+    padding: 0.2em;
 }
 
 /* END WALLETS END WALLETS END WALLETS */
@@ -365,12 +371,44 @@ button, a{
 .sign{
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
+}
+
+#content_sign_hash{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sign_verify_container{
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
+    border-top: 1px solid gray;
+    padding-top: 5px;
 }
+
+#content_verify_sign{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#verify_sign{
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+#verify_sign.valid{
+    color: #00c9a7;
+    background-color: rgba(0,201,167,.1);
+}
+
+#verify_sign.invalid{
+    color: #c90000;
+    background-color: rgba(201, 0, 0, 0.1);
+}
+
 
 /* END SIGNS END SIGNS END SIGNS END SIGNS */
 
@@ -384,6 +422,15 @@ button, a{
     border-radius: 10px ;
 }
 /* END CREATE WALLET END CREATE WALLET */
+
+.footer{
+    background-color: var(--bg-containers);
+    padding: 2em;
+}
+
+.footer h4{
+    text-align: center;
+}
 
 @media screen and (max-width: 359px) {
 
