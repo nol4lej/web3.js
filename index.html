@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./src/css/index.css">
 
-    <title>Document</title>
+    <title>Testing dApp - Moonbase Testnet</title>
 </head>
 <body>
 
@@ -115,9 +115,9 @@
                 <h1>Signs </h1>
             </div>
             <div class="sign">
-                <label for="">Firmar un mensaje:</label>
+                <label for="">Sign a message:</label>
                 <input type="text" id="input_sign">
-                <button id="submit_sign" class="general_button">Firmar</button>
+                <button id="submit_sign" class="general_button">Sign</button>
                 <div id="content_sign_hash">
                     <div class="" id="sign_Hash"></div>
                     <button id="copy_sign" class="material-icons">content_copy</button>
@@ -127,11 +127,11 @@
             <div class="sign_verify_container">
                 <label for="">Hash:</label>
                 <input type="text" id="input_hash">
-                <label for="">Wallet emisor:</label>
+                <label for="">Signer Wallet:</label>
                 <input type="text" id="input_wallet">
-                <label for="">Mensaje:</label>
+                <label for="">Message:</label>
                 <input type="text" id="input_msg">
-                <button id="submit_verify_sign" class="general_button">Verificar firma</button>
+                <button id="submit_verify_sign" class="general_button">Verify sign</button>
                 <div id="content_verify_sign">
                     <div id="verify_sign"></div>
                 </div>
@@ -142,11 +142,24 @@
             <div class="create_Wallets_title">
                 <h1>Create Wallet</h1>
             </div>
-            <div class="">
-                <button id="create_wallet" class="general_button">Crear Wallet</button>
+            <div class="create_button_container">
+                <button id="create_wallet" class="general_button">Create Wallet</button>
             </div>
-            <div class="">
-
+            <div id="wallets_created">
+                <div class="keys_container">
+                    <h4>Public key: </h4>
+                    <div class="key_content">
+                        <p id="public_key"></p>
+                        <button id="copy_public_key" class="material-icons">content_copy</button>  
+                    </div>
+                </div>
+                <div class="keys_container">
+                    <h4>Private key: </h4>
+                    <div class="key_content">
+                        <p id="private_key"></p>
+                        <button id="copy_private_key" class="material-icons">content_copy</button>
+                    </div>
+                </div>
             </div>
         </section>
 

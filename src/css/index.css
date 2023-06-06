@@ -252,6 +252,7 @@ button, a{
 
 .bc_container_data{
     display: flex;
+    gap: 0.5em;
     align-items: center;
     position: relative;
     padding: 0.5em;
@@ -312,6 +313,9 @@ button, a{
 
 .transactions_title{
     text-align: center;
+    background-color: var(--bg-input);
+    padding: 1em;
+    border-radius: 10px;
 }
 
 .transactions_content{
@@ -321,7 +325,7 @@ button, a{
 }
 
 .transactions_content h4{
-    text-align: center;
+    /* text-align: center; */
 }
 
 .transaction_result_container{
@@ -366,6 +370,9 @@ button, a{
 
 .sings_title{
     text-align: center;
+    background-color: var(--bg-input);
+    padding: 1em;
+    border-radius: 10px;
 }
 
 .sign{
@@ -414,13 +421,51 @@ button, a{
 
 /* CREATE WALLET CREATE WALLET CREATE WALLET */
 .create_wallets{
+    text-align: center;
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 1em;
     background-color: var(--bg-containers);
     border-radius: 10px ;
+    height: max-content;
 }
+
+.create_Wallets_title{
+    background-color: var(--bg-input);
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.create_button_container{
+    display: flex;
+    justify-content: center;
+}
+
+#wallets_created{
+    display: none;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.keys_container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.keys_container p{
+    padding: 0.5em;
+    background-color: var(--bg-input);
+    border-radius: 10px;
+}
+
+.key_content{
+    display: flex;
+    gap: 0.3em  ;
+}
+
 /* END CREATE WALLET END CREATE WALLET */
 
 .footer{
@@ -443,6 +488,10 @@ button, a{
     }
 
     .blockchain_data div{
+        flex-direction: column;
+    }
+
+    .keys_container{
         flex-direction: column;
     }
 }
