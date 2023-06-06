@@ -47,9 +47,9 @@
                 <div class="account_data_container">
                     <div class="wallet_data">
                         <i class="material-icons">account_balance_wallet</i>
-                        <span id="show_account"></span>
+                        <p id="show_account"></p>
                         <button id="copy_wallet" class="material-icons">content_copy</button>
-                        <span id="copied_wallet">Copied!</span>
+                        <span id="copied_wallet">Copied</span>
                     </div>
                     <div class="balance_data">
                         <i class="material-icons">savings</i>
@@ -59,27 +59,27 @@
             </div>
             <div class="blockchain_data">
                 <div class="connect_chain">
-                    <span id="current_blockchain">Connecting Chain</span>
-                    <button id="add_chain"><img src="./src/img/metamask.png" alt=""><p>Connect to Moonbase</p></button>
+                    <span id="current_blockchain">● Connecting Chain</span>
+                    <button id="add_chain"><img src="./src/img/metamask.png" alt=""><p>Add Moonbase</p></button>
                 </div>
                 
-                <div class="">
+                <div class="bc_container_data">
                     <h4>Lastest Block:</h4>
                     <span id="current_block"></span>
                 </div>
-                <div class="">
+                <div class="bc_container_data">
                     <h4>Miner:</h4>  
                     <span id="block_miner"></span>
                     <button id="copy_miner" class="material-icons">content_copy</button>
                     <span id="copied_miner">Copied!</span>
                 </div>
-                <div class="">
+                <div class="bc_container_data">
                     <h4>Hash:</h4>
                     <span id="hash_block"></span>
                     <button id="copy_hash" class="material-icons">content_copy</button>
                     <span id="copied_hash">Copied!</span>
                 </div>
-                <div class="">
+                <div class="bc_container_data">
                     <h4>Gas used:</h4>
                     <span id="gas"></span>
                 </div>
@@ -99,12 +99,12 @@
                 <label for="">Transfer to (wallet):</label>
                 <input type="text" id="trans_to">
                 <label for="">Value (in DEV):</label>
-                <input type="number" id="value_transaction">
-                <button id="submit_transaction">Enviar transaccion</button>
+                <input type="number" min="0" step="any" id="value_transaction">
+                <button id="submit_transaction" class="general_button">Enviar transaccion</button>
 
                 <div class="transaction_result_container">
                     <div class="status_container">
-                        <p id="transaction_status">Pending</p>
+                        <p id="transaction_status">● Pending</p>
                     </div>
                     <span id="transaction_result"></span>
                 </div>

@@ -1,7 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica&family=Merriweather+Sans:wght@500&display=swap');
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Geologica', sans-serif;
+    color: #ffffff;
+}
+
+:root{
+    --bg-color: #27262c;
+    --bg-containers: #573d90;
+    --bg-input: #4b4955; 
+    --bg-input-border: #ffffff2f;
+    --button: #1fc7d4;
+    --button-hover: #1fc8d48e;
+}
+
+input{
+    color: black;
+    padding: 0.5em;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.general_button{
+    width: max-content;
+    padding: 0.5em;
+    border: 1px solid var(--bg-input-border);
+    border-radius: 5px;
+    background-color: var(--button);
+    transition: background 0.5s ease-in-out;
+}
+
+.general_button:hover{
+    background-color: var(--button-hover);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}   
+
+.material-icons{
+    color: var(--button);
+    border: 2px solid var(--button);
+    border-radius: 50%;
+    padding: 0.2em;
+}
+
+body{
+    background-color: var(--bg-color);
 }
 
 button, a{
@@ -13,10 +62,11 @@ button, a{
 }
 
 .tittle_container{
-    border: 1px solid red;
     display: flex;
     justify-content: center;
     padding: 2em;
+    background-color: var(--bg-containers);
+    border-radius: 0 0 10px 10px;
 }
 
 .blockchain_data_container{
@@ -28,12 +78,13 @@ button, a{
 }
 
 .blockchain_status_buttons{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1em;
     gap: 5px;
+    background-color: var(--bg-containers);
+    border-radius: 10px;
 }
 
 .connect_add_buttons{
@@ -65,7 +116,7 @@ button, a{
 .connect_modal.active {
     opacity: 1;
     pointer-events: auto;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .modal_content{
@@ -73,10 +124,10 @@ button, a{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #00c9a7;
-    border: 1px solid red;
+    background-color: var(--bg-containers);
     padding: 2em;
     border-radius: 10px;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);    
 }
 
 .modal_exit_button{
@@ -84,13 +135,21 @@ button, a{
     position: absolute;
     left: 0;
     top: 0;
+}
 
+#close_modal{
+    background: none;
+    border: none;
 }
 
 .modal_buttons{
     display: flex;
     justify-content: center;
     gap: 1em;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 10px;
+    background-color: var(--bg-input);
 }
 
 #metamask_button, #trust_wallet_button{
@@ -100,13 +159,16 @@ button, a{
     gap: 0.3em;
 }
 
+#metamask_button:hover h4, #trust_wallet_button:hover h4{
+    color: var(--button);
+}
+
 #metamask_button img, #trust_wallet_button img{
     width: 50px;
     height: 50px;
 }
 
 .account_data_container{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -115,34 +177,42 @@ button, a{
 }
 
 .wallet_data, .balance_data{
-    border: 1px solid red;
+    border: 1px solid var(--bg-input-border);    
+    border-radius: 10px;
     display: flex;
     align-items: center;
     padding: 0.5em;
     gap: 0.5em;
     position: relative;
+    background-color: var(--bg-input);
 }
 
+/* END WALLETS END WALLETS END WALLETS */
 
+/* BLOCKCHAIN DATA BLOCKCHAIN DATA */
 .blockchain_data{
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 1em;
-    border: 1px solid red;
+    background-color: var(--bg-containers);
+    border-radius: 10px;
 }
 
 .connect_chain{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 1em;
     font-size: 16px;
+
 }
 
 #current_blockchain{
     text-align: center;
     color: #db9a04;
-    background-color: rgba(219,154,4,.1);
+    /* background-color: rgba(219,154,4,.1); */
     padding: 0.5em;
     transition: all 0.5s ease-in-out;
     border-radius: 5px;
@@ -150,7 +220,7 @@ button, a{
 
 #current_blockchain.active{
     color: #00c9a7;
-    background-color: rgba(0,201,167,.1);
+    /* background-color: rgba(0,201,167,.1); */
 }
 
 #add_chain{
@@ -159,11 +229,14 @@ button, a{
     gap: 5px;
     width: max-content;
     padding: 0.5em;
+    border: 1px solid var(--bg-input-border);
     border-radius: 5px;
+    background-color: var(--button);
+    transition: background 0.3s ease-in-out;
 }
 
 #add_chain:hover{
-    background-color: #00c9a7;
+    background-color: var(--button-hover)
 }
 
 #add_chain img{
@@ -171,12 +244,13 @@ button, a{
     height: 24px;
 }
 
-.blockchain_data div{
+.bc_container_data{
     display: flex;
     align-items: center;
     position: relative;
     padding: 0.5em;
-    border: 1px solid red;
+    background-color: var(--bg-input);
+    border-radius: 10px;
 }
 
 #copy_miner, #copy_hash, #copy_wallet{
@@ -210,6 +284,8 @@ button, a{
     transition: all 0.5s;
 }
 
+/* END BLOCKCHAIN DATA END BLOCKCHAIN DATA */
+
 .main{
     display: flex;
     flex-direction: column;
@@ -219,11 +295,13 @@ button, a{
 
 /* TRANSACTIONS TRANSACTIONS*/
 .transactions_container{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 1em;
+    background-color: var(--bg-containers);
+    border-radius: 10px;
+    height: max-content;
 }
 
 .transactions_title{
@@ -243,6 +321,8 @@ button, a{
 .transaction_result_container{
     display: flex;
     flex-direction: column;
+    padding-top: 0.5em;
+    border-top: 1px solid gray;
 }
 
 .status_container{
@@ -270,11 +350,12 @@ button, a{
 
 /* SIGNS SIGNS SIGNS SIGNS */
 .signs_container{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 1em;
+    background-color: var(--bg-containers);
+    border-radius: 10px;
 }
 
 .sings_title{
@@ -295,11 +376,12 @@ button, a{
 
 /* CREATE WALLET CREATE WALLET CREATE WALLET */
 .create_wallets{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 1em;
+    background-color: var(--bg-containers);
+    border-radius: 10px ;
 }
 /* END CREATE WALLET END CREATE WALLET */
 
@@ -364,8 +446,8 @@ button, a{
     }
 
     .main{
-        padding-left: 10em;
-        padding-right: 10em;
+        padding-left: 5em;
+        padding-right: 5em;
     }
 }
 

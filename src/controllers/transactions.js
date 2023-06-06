@@ -1,14 +1,16 @@
 import { currentAccount} from "./4accounts.js";
 import { provider } from "./3connect_provider.js";
-import { web3 } from "./1connections.js";
+import { web3 } from "./1connections.js";   
+import { handleChainChanged } from "./5chains.js";
 
-const value_transaction = document.getElementById("value_transaction")
-const submit_transaction = document.getElementById("submit_transaction")
-const addressTo = document.getElementById("trans_to")
-const transaction_result = document.getElementById("transaction_result")
-const transaction_status = document.getElementById("transaction_status")
+const value_transaction = document.getElementById("value_transaction");
+const submit_transaction = document.getElementById("submit_transaction");
+const addressTo = document.getElementById("trans_to");
+const transaction_result = document.getElementById("transaction_result");
+const transaction_status = document.getElementById("transaction_status");
 
-submit_transaction.addEventListener("click", function (){
+submit_transaction.addEventListener("click", async () => {
+    await handleChainChanged()
     if(value_transaction.value > 0){
         // 1 eth = 1000000000000000000 wei
         const valorHex = web3.utils.toHex("1000000000000000000" * value_transaction.value)
@@ -23,7 +25,7 @@ submit_transaction.addEventListener("click", function (){
             from: currentAccount,
         })
         .then(transactionHash => {
-            const transHash_short = transactionHash.slice(0,-50)+"..."+transactionHash.slice(-15)
+            const transHash_short = transactionHash.slice(0,-60)+"..."+transactionHash.slice(-4)
             transaction_status.style.display = "flex";
             transaction_result.innerHTML = `Transaction Hash: <a href="https://moonbase.moonscan.io/tx/${transactionHash}" target="_blank">${transHash_short}</a>`
             const checkTransactionStatus = async () => {
@@ -32,7 +34,7 @@ submit_transaction.addEventListener("click", function (){
                     if (receipt) {
                         console.log("Recibo de la transacción:", receipt);
                         transaction_status.classList.add("success");
-                        transaction_status.textContent = "Success";
+                        transaction_status.textContent = "● Success";
                         return;
                     }
         
@@ -44,11 +46,14 @@ submit_transaction.addEventListener("click", function (){
             };
             checkTransactionStatus();
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            if(error.code === -32602){
+                console.log("Invalid address")
+            }
+        })
     } else {
         console.log("Debes ingresar una cantidad para transferir.")
     }
-    
 })
 
 export {submit_transaction}
