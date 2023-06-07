@@ -40,9 +40,10 @@ function connectProvider(){
               openDeeplink: link,
             }
             if(!window.ethereum){
-                const MMSDK = new MetaMaskSDK.MetaMaskSDK(options);
-                provider = MMSDK.getProvider()
-                await connectWallet(provider);
+                const MMSDK = new MetaMaskSDK.MetaMaskSDK();
+                provider = MMSDK.getProvider();
+                window.open("https://metamask.app.link/dapp/nol4lej.github.io/web3.js/")
+                // await connectWallet(provider);
                 resolve()
             } else if(window.ethereum){
                 provider = window.ethereum;
