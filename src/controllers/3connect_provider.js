@@ -10,17 +10,17 @@ function connectProvider(){
     return new Promise((resolve, reject) => {
       metamaskButton.onclick = async () => {
         if(!window.ethereum){
-          const MMSDK = new MetaMaskSDK.MetaMaskSDK();
-          provider = MMSDK.getProvider();
-          await connectWallet(provider);
-          resolve()
-        } else if (window.ethereum){
-          provider = window.ethereum;
-          await connectWallet(provider);
-          resolve()
+            window.open("https://metamask.app.link/dapp/nol4lej.github.io/web3.js/")
+            const MMSDK = new MetaMaskSDK.MetaMaskSDK();
+            provider = MMSDK.getProvider();
+            await connectWallet(provider);
+            resolve()
+        } else if(window.ethereum){
+            provider = window.ethereum;
+            await connectWallet(provider);
+            resolve()
         } else {
-          window.open("https://metamask.app.link/dapp/nol4lej.github.io/web3.js/")
-          resolve()
+            reject()
         }
       }
       // const trustWalletButton = document.getElementById("trust_wallet_button");
