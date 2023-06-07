@@ -5,9 +5,7 @@ await connecting();
 
 var provider;
   
-const options = {
-  openDeeplink: "https://metamask.app.link/dapp/nol4lej.github.io/web3.js/",
-}
+
 
 
 function connectProvider(){
@@ -19,19 +17,28 @@ function connectProvider(){
         trustWalletButton.onclick = async () => {
             provider = getTrustWalletFromWindow();
             if (provider) {
-                
+                window.open('trust://', '_blank')
                 await connectWallet(provider);
                 resolve()
             } else {
-                // window.open('trust://', '_blank')
+              try {
+                window.open("https://link.trustwallet.com/open_url?url=https://nol4lej.github.io/web3.js/", '_blank')
+                resolve()
+              } catch (error) {
                 window.open('https://trustwallet.com/download', '_blank');
                 console.log('Trust Wallet no detectado');
                 reject()    
+              }
+
                 
             }
         };
 
         metamaskButton.onclick = async () => {
+            const link = "https://metamask.app.link/dapp/nol4lej.github.io/web3.js/"
+            const options = {
+              openDeeplink: link,
+            }
             if(!window.ethereum){
                 const MMSDK = new MetaMaskSDK.MetaMaskSDK(options);
                 provider = MMSDK.getProvider()
