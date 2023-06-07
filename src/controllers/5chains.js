@@ -27,7 +27,7 @@ add_chain_button.addEventListener("click", () => {
   .catch((error) => {
     console.error('Error al agregar la red a la wallet:', error);
   });
-})
+});
 
 // Evento para detectar si se a cambiado la chain.
 provider.on('chainChanged', handleChainChanged);
@@ -36,10 +36,13 @@ export function handleChainChanged() {
   return new Promise(async (resolve, reject) => {
     const currentChain = await provider.request({ method: 'eth_chainId' });
     if (currentChain !== "0x507") {
-      reject(errorModal("Please connect to Moonbase"));
+      add_chain_button.style.display = "flex";
+      reject(errorModal("Please connect to Moonbase Alpha"));
     } else {
-      resolve()
+      add_chain_button.style.display = "none";
+      resolve();
     }
   });
-}
-handleChainChanged()
+};
+
+handleChainChanged();

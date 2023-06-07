@@ -15,7 +15,7 @@ function connecting(){
         .then(() => {
             const current_blockchain = document.getElementById("current_blockchain");
             current_blockchain.classList.add("active");
-            current_blockchain.textContent = "● Connected Moonbase";
+            current_blockchain.textContent = "● Connected Moonbase Alpha";
             resolve();
         })
         .catch(error => {

@@ -64,12 +64,13 @@ button, a{
 }
 
 .header{
-    padding: 0 2em 2em 2em;
+    padding: 0 2em 0em 2em;
 }
 
 .tittle_container{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    text-align: center;
     padding: 2em;
     background-color: var(--bg-containers);
     border-radius: 0 0 10px 10px;
@@ -80,7 +81,7 @@ button, a{
     flex-direction: column;
     font-size: 20px;
     gap: 1em;
-    padding: 2em 0 0 0;
+    padding: 1em 0 0 0;
 }
 
 .blockchain_status_buttons{
@@ -101,6 +102,28 @@ button, a{
     gap: 5px;
 }
 
+.connect_buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    justify-content: center;
+}
+
+#metamask_button, #disconnect_button{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#metamask_button img , #disconnect_button img{
+    height: 30px;
+    width: 30px;
+}
+
+#disconnect_button{
+    display: none;
+}
+
 #connect_info{
     display: flex;
     justify-content: center;
@@ -114,85 +137,8 @@ button, a{
     color: #db9a04;
 }
 
-#connect_wallet{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    width: max-content;
-    font-size: 20px;
-    padding: 1em;
-}
-
-.connect_modal {
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    pointer-events: none;
-    text-align: center;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.connect_modal.active {
-    opacity: 1;
-    pointer-events: auto;
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-.modal_content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--bg-containers);
-    padding: 2em;
-    border-radius: 10px;
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);    
-}
-
-.modal_exit_button{
-    padding: 5px;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-#close_modal{
-    background: none;
-    border: none;
-}
-
-.modal_buttons{
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-    padding: 1em;
-    margin-top: 1em;
-    border-radius: 10px;
-    background-color: var(--bg-input);
-}
-
-#metamask_button, #trust_wallet_button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3em;
-}
-
-#metamask_button:hover h4, #trust_wallet_button:hover h4{
-    color: var(--button);
-}
-
-#metamask_button img, #trust_wallet_button img{
-    width: 50px;
-    height: 50px;
-}
-
-.account_data_container{
-    display: flex;
+#account_data_container{
+    display: none;
     flex-direction: column;
     width: 100%;
     padding: 0.5em;
@@ -254,7 +200,7 @@ button, a{
 }
 
 #add_chain{
-    display: flex;
+    display: none;
     align-items: center;
     gap: 5px;
     width: max-content;
@@ -270,8 +216,8 @@ button, a{
 }
 
 #add_chain img{
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 }
 
 .bc_container_data{
@@ -321,7 +267,7 @@ button, a{
     display: flex;
     flex-direction: column;
     gap: 1em;
-    padding: 2em;
+    padding: 1em 2em 2em 2em;
 }
 
 /* TRANSACTIONS TRANSACTIONS*/
