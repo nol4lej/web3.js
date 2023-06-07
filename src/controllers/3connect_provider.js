@@ -13,7 +13,7 @@ function connectProvider(){
             window.open("https://metamask.app.link/dapp/nol4lej.github.io/web3.js/")
             const MMSDK = new MetaMaskSDK.MetaMaskSDK();
             provider = MMSDK.getProvider();
-            await connectWallet(provider);
+            // await connectWallet(provider);
             resolve()
         } else if(window.ethereum){
             provider = window.ethereum;
