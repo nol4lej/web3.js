@@ -17,12 +17,12 @@ function connectProvider(){
         trustWalletButton.onclick = async () => {
             provider = getTrustWalletFromWindow();
             if (provider) {
-                window.open('trust://', '_blank')
+                // window.open('trust://', '_blank')
                 await connectWallet(provider);
                 resolve()
             } else {
               try {
-                window.open("https://link.trustwallet.com/open_url?url=https://nol4lej.github.io/web3.js/", '_blank')
+                window.open("https://link.trustwallet.com/open_url?url=https://nol4lej.github.io/web3.js/")
                 resolve()
               } catch (error) {
                 window.open('https://trustwallet.com/download', '_blank');
@@ -43,6 +43,7 @@ function connectProvider(){
                 const MMSDK = new MetaMaskSDK.MetaMaskSDK(options);
                 provider = MMSDK.getProvider()
                 await connectWallet(provider);
+                resolve()
             } else if(window.ethereum){
                 provider = window.ethereum;
                 await connectWallet(provider);
