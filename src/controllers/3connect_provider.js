@@ -20,6 +20,7 @@ function connectProvider(){
           resolve()
         } else {
           window.open("https://metamask.app.link/dapp/nol4lej.github.io/web3.js/")
+          resolve()
         }
       }
       // const trustWalletButton = document.getElementById("trust_wallet_button");
