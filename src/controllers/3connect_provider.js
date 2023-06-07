@@ -5,6 +5,11 @@ await connecting();
 
 var provider;
   
+const options = {
+  openDeeplink: "https://metamask.app.link/dapp/nol4lej.github.io/web3.js/",
+}
+
+
 function connectProvider(){
     const trustWalletButton = document.getElementById("trust_wallet_button");
     const metamaskButton = document.getElementById("metamask_button");
@@ -28,13 +33,10 @@ function connectProvider(){
 
         metamaskButton.onclick = async () => {
             if(!window.ethereum){
-                // const MMSDK = new MetaMaskSDK.MetaMaskSDK(opt);
-                const MMSDK = new MetaMaskSDK.MetaMaskSDK();
+                const MMSDK = new MetaMaskSDK.MetaMaskSDK(options);
                 provider = MMSDK.getProvider()
                 await connectWallet(provider);
             } else if(window.ethereum){
-                // const MMSDK = new MetaMaskSDK.MetaMaskSDK();
-                // provider = MMSDK.getProvider()
                 provider = window.ethereum;
                 await connectWallet(provider);
                 resolve()
