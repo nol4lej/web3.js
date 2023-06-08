@@ -5,16 +5,17 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Geologica', sans-serif;
-    color: #ffffff;
+    color: rgba(255,255,255,0.8);
 }
 
 :root{
-    --bg-color: #27262c;
-    --bg-containers: #573d90;
-    --bg-input: #4b4955; 
+    --bg-color: #1b1a1f;
+    --bg-containers:  #39295f56;
+    --bg-input: #573d9038; 
     --bg-input-border: #ffffff2f;
-    --button: #1fc7d4;
-    --button-hover: #1fc8d48e;
+    --button: #1fc8d486;
+    --button-hover: #11585d7c;
+    --box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 
 input{
@@ -53,7 +54,11 @@ input{
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-}   
+}
+
+input{
+    border: none;
+}
 
 body{
     background-color: var(--bg-color);
@@ -74,6 +79,11 @@ button, a{
     padding: 2em;
     background-color: var(--bg-containers);
     border-radius: 0 0 10px 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.tittle_container p{
+    color: var(--button);
 }
 
 .blockchain_data_container{
@@ -92,6 +102,8 @@ button, a{
     gap: 5px;
     background-color: var(--bg-containers);
     border-radius: 10px;
+    box-shadow: var(--box-shadow);
+
 }
 
 .connect_add_buttons{
@@ -173,6 +185,7 @@ button, a{
     padding: 1em;
     background-color: var(--bg-containers);
     border-radius: 10px;
+    box-shadow: var(--box-shadow);
 }
 
 .connect_chain{
@@ -254,6 +267,7 @@ button, a{
     background-color: rgba(0,201,167,.1);
     border-radius: 5px;
     padding: 5px;
+    font-size: 12px;
 }
 
 #copied_miner.active , #copied_hash.active, #copied_wallet.active{
@@ -279,6 +293,8 @@ button, a{
     background-color: var(--bg-containers);
     border-radius: 10px;
     height: max-content;
+    box-shadow: var(--box-shadow);
+
 }
 
 .transactions_title{
@@ -336,6 +352,7 @@ button, a{
     padding: 1em;
     background-color: var(--bg-containers);
     border-radius: 10px;
+    box-shadow: var(--box-shadow);
 }
 
 .sings_title{
@@ -399,6 +416,7 @@ button, a{
     background-color: var(--bg-containers);
     border-radius: 10px ;
     height: max-content;
+    box-shadow: var(--box-shadow);
 }
 
 .create_Wallets_title{
