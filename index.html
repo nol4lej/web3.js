@@ -23,7 +23,7 @@
     <header class="header">
         <div class="tittle_container">
             <h1>Decentralized Application</h1>
-            <p>Testing with MetaMask SDK + web3.js</p>
+            <p>Testing with MetaMask SDK + web3.js + Moonbase Alpha API</p>
         </div>
         <div class="blockchain_data_container">
             <div class="blockchain_status_buttons">
@@ -83,26 +83,7 @@
 
 
     <main class="main">
-        <section class="transactions_container">
-            <div class="transactions_title">
-                <h1>Transactions</h1>
-            </div>
-            <div class="transactions_content">
-                <h4>Send DEV</h4>
-                <label for="">Transfer to (wallet):</label>
-                <input type="text" id="trans_to">
-                <label for="">Value (in DEV):</label>
-                <input type="number" min="0" step="any" id="value_transaction">
-                <button id="submit_transaction" class="general_button" disabled>Send transaction</button>
 
-                <div class="transaction_result_container">
-                    <div class="status_container">
-                        <p id="transaction_status">● Pending</p>
-                    </div>
-                    <span id="transaction_result"></span>
-                </div>
-            </div>
-        </section>
         <section class="signs_container">
             <div class="sings_title">
                 <h1>Signs </h1>
@@ -131,6 +112,28 @@
             </div>
         </section>
 
+        <section class="transactions_container">
+            <div class="transactions_title">
+                <h1>Transactions</h1>
+            </div>
+            <div class="transactions_content">
+                <h4>Send DEV</h4>
+                <label for="">Transfer to (wallet):</label>
+                <input type="text" id="trans_to">
+                <label for="">Value (in DEV):</label>
+                <input type="number" min="0" step="any" id="value_transaction">
+                <button id="submit_transaction" class="general_button" disabled>Send transaction</button>
+
+                <div class="transaction_result_container">
+                    <div class="status_container">
+                        <p id="transaction_status">● Pending</p>
+                    </div>
+                    <span id="transaction_result"></span>
+                </div>
+            </div>
+        </section>
+
+
         <section class="create_wallets">
             <div class="create_Wallets_title">
                 <h1>Create Wallet</h1>
@@ -156,6 +159,34 @@
             </div>
         </section>
 
+        <section class="api_txcontainer">
+            <div class="normal_transactions_container">
+                <div class="normal_title"></div>
+                <div class="normal_table">
+                    <table class="api_table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Txn</th>
+                                <th>Age</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Value</th>
+                                <th>Txn Fee</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="api_powered">
+                <p>Powered by <a href="https://moonbase.moonscan.io" target="_blank">https://moonbase.moonscan.io</a> APIs</p>
+
+            </div>
+            
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -170,6 +201,7 @@
 <script type="module" src="./src/controllers/1connections.js"></script>
 <script type="module" src="./src/controllers/3connect_provider.js"></script> 
 <script type="module" src="./src/controllers/modal_connect.js"></script>
+<script type="module" src="./src/controllers/moonbase_api.js"></script>
 
 
 </html>

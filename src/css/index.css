@@ -278,8 +278,7 @@ button, a{
 /* END BLOCKCHAIN DATA END BLOCKCHAIN DATA */
 
 .main{
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 1em;
     padding: 1em 2em 2em 2em;
 }
@@ -456,6 +455,84 @@ button, a{
 
 /* END CREATE WALLET END CREATE WALLET */
 
+/* TRANSACTIONS TABLE TRANSACTIONS TABLE */
+.api_txcontainer{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    background-color: var(--bg-containers);
+    border-radius: 10px ;
+    height: max-content;
+    box-shadow: var(--box-shadow);
+    overflow-x: scroll;
+}
+
+
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+#table_body td{
+    padding: 0.5em;
+    white-space: nowrap;
+    text-align: start;
+}
+
+#table_body tr:nth-child(2n){
+    background-color: var(--bg-input);
+
+}
+
+.transactionTo{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+
+}
+
+.transactionTxn{
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.transactionTxn i{
+    display: flex;
+    font-size: 18px;
+    color: red;
+    
+}
+
+#table_body span{
+    width: 50px;
+    padding: 0.3em;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.toSelf{
+    color: #626c76;
+    background-color: #3e444a;
+}
+
+.toIn{
+    color: #02977e;
+    background-color: #005d4d;
+}
+
+.toOut{
+    color: #b47d00;
+    background-color: #6f4f03;
+}
+
+
+/* END TRANSACTIONS TABLE END TRANSACTION TABLE */
+
 .footer{
     background-color: var(--bg-containers);
     padding: 2em;
@@ -484,7 +561,8 @@ button, a{
     }
 }
 
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 770px) {
+
     .blockchain_data_container{
         flex-direction: row;
         justify-content: center;
@@ -499,22 +577,12 @@ button, a{
         height: max-content;
     }
 
-
     .main{
-        flex-direction: row;
-        justify-content: center;
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    .transactions_container{
-        flex-basis: 33.3%;
-    }
-
-    .signs_container{
-        flex-basis: 33.3%;
-    }
-
-    .create_wallets{
-        flex-basis: 33.3%;
+    .api_txcontainer{
+        grid-column: span 3;
     }
 
 }
