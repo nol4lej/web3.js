@@ -3,7 +3,6 @@ import { provider } from "./3connect_provider.js";
 import { web3 } from "./1connections.js";   
 import { handleChainChanged } from "./5chains.js";
 import { errorModal } from "./error_chain_modal.js";
-import { fetchExplorer } from "./moonbase_api.js";
 
 const value_transaction = document.getElementById("value_transaction");
 const submit_transaction = document.getElementById("submit_transaction");
@@ -33,6 +32,7 @@ submit_transaction.addEventListener("click", async () => {
 
             const transHash_short = transactionHash.slice(0,-60)+"..."+transactionHash.slice(-4)
             transaction_status.style.display = "flex";
+            transaction_result.style.display = "flex"
             transaction_result.innerHTML = `Transaction Hash: <a href="https://moonbase.moonscan.io/tx/${transactionHash}" target="_blank">${transHash_short}</a>`
             const checkTransactionStatus = async () => {
                 try {
@@ -51,7 +51,6 @@ submit_transaction.addEventListener("click", async () => {
                 }
             };
             checkTransactionStatus();
-            setInterval(fetchExplorer, 2000)
         })
         .catch(error => {
             if(error.code === -32602){

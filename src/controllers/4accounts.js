@@ -16,7 +16,9 @@ const account_data_container = document.getElementById("account_data_container")
 const metamask_button = document.getElementById("metamask_button");
 const disconnect_button = document.getElementById("disconnect_button");
 const add_chain_button = document.getElementById("add_chain");
-const table_body = document.getElementById("table_body")
+const table_body = document.getElementById("table_body");
+const transaction_result = document.getElementById("transaction_result");
+const transaction_status = document.getElementById("transaction_status");
 
 
 await connectProvider();
@@ -78,6 +80,8 @@ function handleAccountsChanged(newAccount) {
         Disconnect()
     } else if (accounts[0] !== currentAccount) {
         currentAccount = accounts[0];
+        transaction_result.style.display = "none"
+        transaction_status.style.display = "none"
         fetchExplorer()
         getBalance(currentAccount);
         show_account.textContent = currentAccount.slice(0, -35) + "..." + currentAccount.slice(-4);
@@ -115,6 +119,8 @@ function Disconnect(){
     disconnect_button.style.display = "none";
     metamask_button.style.display = "flex";
     table_body.style.display = "none"
+    transaction_result.style.display = "none"
+    transaction_status.style.display = "none"
     disableButtons();
 };
 
