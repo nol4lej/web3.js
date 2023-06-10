@@ -27,6 +27,10 @@ submit_transaction.addEventListener("click", async () => {
             from: currentAccount,
         })
         .then(transactionHash => {
+            // En caso de que ya haya una txn en el html, ahora se cambia por pendiente nuevamente.
+            transaction_status.classList.remove("success");
+            transaction_status.textContent = "● Pending";
+
             const transHash_short = transactionHash.slice(0,-60)+"..."+transactionHash.slice(-4)
             transaction_status.style.display = "flex";
             transaction_result.innerHTML = `Transaction Hash: <a href="https://moonbase.moonscan.io/tx/${transactionHash}" target="_blank">${transHash_short}</a>`
