@@ -2,11 +2,24 @@ import {currentAccount} from "./4accounts.js";
 
 const table_body = document.getElementById("table_body");
 
-fetch(`https://api-moonbase.moonscan.io/api?module=account&action=txlist&address=${currentAccount}&startblock=1&endblock=99999999&sort=asc&apikey=81QDSMYX7KWE3NS7S3H59Z88DEDTPJW4H4`)
-.then(data => {return data.json()})
-.then(result => handleNormalTransactions(result))
+export function fetchExplorer(){
+    fetch(`https://api-moonbase.moonscan.io/api?module=account&action=txlist&address=${currentAccount}&startblock=1&endblock=99999999&sort=asc&apikey=81QDSMYX7KWE3NS7S3H59Z88DEDTPJW4H4`)
+        .then(data => {return data.json()})
+        .then(data => {
+            clearTable()
+            handleNormalTransactions(data)
+        })
+        .catch(error => console.error("No se a podido realizar la solicitud:" + error));
+}
+
+function clearTable() {
+    while (table_body.firstChild) {
+      table_body.firstChild.remove();
+    }
+}
 
 function handleNormalTransactions(data){
+    table_body.style.display = "table-row-group"
     const transactions = data.result;
     // se invierte el array para traer primero las ultimas transacciones.
     transactions.reverse().forEach((element, index) => {

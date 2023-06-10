@@ -4,6 +4,7 @@ import { provider } from "./3connect_provider.js";
 import { connectProvider } from "./3connect_provider.js";
 import { activeButtons, disableButtons } from "./active_buttons.js";
 import { errorModal } from "./error_chain_modal.js";
+import { fetchExplorer } from "./moonbase_api.js";
 
 export let currentAccount = null; // Se utiliza en connectWallet para almacenar la wallet que se conecta y posteriormente se utiliza en handleAccountsChanged para manejar la actualización de la wallet conectada actual.
 let accounts = []; // Creado para acceder a la cuenta conectada actual. Se utiliza en handleAccountsChanged.
@@ -15,6 +16,7 @@ const account_data_container = document.getElementById("account_data_container")
 const metamask_button = document.getElementById("metamask_button");
 const disconnect_button = document.getElementById("disconnect_button");
 const add_chain_button = document.getElementById("add_chain");
+const table_body = document.getElementById("table_body")
 
 
 await connectProvider();
@@ -42,6 +44,7 @@ export async function connectWallet(provider){
             account_data_container.style.display = "flex";
             disconnect_button.style.display = "flex";
             metamask_button.style.display = "none";
+            fetchExplorer()
             VerifyChain()
             getBalance(currentAccount);
             activeButtons();
@@ -75,6 +78,7 @@ function handleAccountsChanged(newAccount) {
         Disconnect()
     } else if (accounts[0] !== currentAccount) {
         currentAccount = accounts[0];
+        fetchExplorer()
         getBalance(currentAccount);
         show_account.textContent = currentAccount.slice(0, -35) + "..." + currentAccount.slice(-4);
     };
@@ -110,6 +114,7 @@ function Disconnect(){
     connect_info.style.display = "flex";
     disconnect_button.style.display = "none";
     metamask_button.style.display = "flex";
+    table_body.style.display = "none"
     disableButtons();
 };
 

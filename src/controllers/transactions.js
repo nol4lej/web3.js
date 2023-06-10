@@ -3,6 +3,7 @@ import { provider } from "./3connect_provider.js";
 import { web3 } from "./1connections.js";   
 import { handleChainChanged } from "./5chains.js";
 import { errorModal } from "./error_chain_modal.js";
+import { fetchExplorer } from "./moonbase_api.js";
 
 const value_transaction = document.getElementById("value_transaction");
 const submit_transaction = document.getElementById("submit_transaction");
@@ -36,7 +37,7 @@ submit_transaction.addEventListener("click", async () => {
                         // console.log("Recibo de la transacción:", receipt);
                         transaction_status.classList.add("success");
                         transaction_status.textContent = "● Success";
-                        return;
+                        return
                     }
         
                     // La transacción aún no ha sido minada, esperar y verificar nuevamente.
@@ -46,6 +47,7 @@ submit_transaction.addEventListener("click", async () => {
                 }
             };
             checkTransactionStatus();
+            setInterval(fetchExplorer, 2000)
         })
         .catch(error => {
             if(error.code === -32602){
