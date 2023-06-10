@@ -2,15 +2,21 @@ import {currentAccount} from "./4accounts.js";
 
 const table_body = document.getElementById("table_body");
 
-export function fetchExplorer(){
-    fetch(`https://api-moonbase.moonscan.io/api?module=account&action=txlist&address=${currentAccount}&startblock=1&endblock=99999999&sort=asc&apikey=81QDSMYX7KWE3NS7S3H59Z88DEDTPJW4H4`)
-        .then(data => {return data.json()})
+export function fetchExplorer() {
+    const fetchData = () => {
+      fetch(`https://api-moonbase.moonscan.io/api?module=account&action=txlist&address=${currentAccount}&startblock=1&endblock=99999999&sort=asc&apikey=81QDSMYX7KWE3NS7S3H59Z88DEDTPJW4H4`)
+        .then(data => { return data.json() })
         .then(data => {
-            clearTable()
-            handleNormalTransactions(data)
+          clearTable()
+          handleNormalTransactions(data)
         })
-        .catch(error => console.error("No se a podido realizar la solicitud:" + error));
-}
+        .catch(error => console.error("No se ha podido realizar la solicitud: " + error));
+    };
+  
+    fetchData(); // Ejecutar el fetch inmediatamente al llamar a la función
+  
+    setInterval(fetchData, 5000); // Ejecutar el fetch cada 5 segundos después de la primera ejecución
+  }
 
 function clearTable() {
     while (table_body.firstChild) {
