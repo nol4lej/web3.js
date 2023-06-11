@@ -1,71 +1,83 @@
-import {currentAccount} from "./4accounts.js";
+import {currentAccount, verificarCuentaFetch} from "./4accounts.js";
 
-const table_body = document.getElementById("table_body");
+const wrapper = document.getElementById("wrapper"); // Obtén el elemento contenedor de la tabla
+
+let previousSize = 0; // Variable para almacenar el tamaño anterior de los datos
+let previousAccount;
+export let intervalFetch; // solucionar el error de que se cargue doble la tabla al cambiar de cuenta y conectar.
 
 export function fetchExplorer() {
     const fetchData = () => {
-      fetch(`https://api-moonbase.moonscan.io/api?module=account&action=txlist&address=${currentAccount}&startblock=1&endblock=99999999&sort=asc&apikey=81QDSMYX7KWE3NS7S3H59Z88DEDTPJW4H4`)
-        .then(data => { return data.json() })
-        .then(data => {
-          clearTable()
-          handleNormalTransactions(data)
-        })
-        .catch(error => console.error("No se ha podido realizar la solicitud: " + error));
+        fetch(`https://api-moonbase.moonscan.io/api?module=account&action=txlist&address=${currentAccount}&startblock=1&endblock=99999999&sort=asc&apikey=81QDSMYX7KWE3NS7S3H59Z88DEDTPJW4H4`)
+            .then(data => { return data.json() })
+            .then(data => {
+                const resultado = data.result;
+                console.log(resultado)
+                if(verificarCuentaFetch === true){
+                    if (resultado.length > previousSize || currentAccount !== previousAccount) {
+                        console.log("yei")
+                        datatable(resultado);
+                        previousSize = resultado.length;
+                        previousAccount = currentAccount;
+                    };
+                }
+
+            })
+            .catch(error => console.error("No se ha podido realizar la solicitud: " + error));
     };
-  
-    fetchData(); // Ejecutar el fetch inmediatamente al llamar a la función
-  
-    setInterval(fetchData, 5000); // Ejecutar el fetch cada 5 segundos después de la primera ejecución
-  }
-
-function clearTable() {
-    while (table_body.firstChild) {
-      table_body.firstChild.remove();
-    }
+    fetchData()
+    intervalFetch = setInterval(fetchData, 5000); // Ejecutar el fetch cada 5 segundos después de la primera ejecución
 }
 
-function handleNormalTransactions(data){
-    table_body.style.display = "table-row-group"
-    const transactions = data.result;
-    // se invierte el array para traer primero las ultimas transacciones.
-    transactions.reverse().forEach((element, index) => {
-        const fila = document.createElement("tr");
-        const number = document.createElement("td");
-        const txn = document.createElement("td");
-        const age = document.createElement("td");
-        const from = document.createElement("td");
-        const to = document.createElement("td");
-        const value = document.createElement("td");
-        const gas = document.createElement("td");
+function datatable(data) {
+  wrapper.innerHTML = ""; // Limpiar el contenido del contenedor antes de renderizar la tabla
 
-        to.setAttribute("class", "transactionTo");
-        txn.setAttribute("class", "transactionTxn")
-        
-        number.textContent = transactions.length - index;
-        txn.innerHTML = verifyStatus(element) + element.hash.slice(0,6)+"..."+element.hash.slice(-4);
-        age.textContent = element.timeStamp //convertTimestamp(element.timeStamp);
-        from.textContent = element.from.slice(0,6)+"..."+element.from.slice(-4);
-        to.innerHTML = handleAdressFromTo(element);
-        value.textContent = handleValue(element.value) + " DEV";
-        gas.textContent = ((element.gasUsed * element.gasPrice) / (10**18)).toFixed(8);
+  const tableData = data.map((element, index) => {
+    const number = index + 1;
+    const txn = verifyStatus(element) + element.hash.slice(0,6)+"..."+element.hash.slice(-4);
+    const age = element.timeStamp;
+    const from = element.from.slice(0,6)+"..."+element.from.slice(-4);
+    const to = handleAdressFromTo(element);
+    const value = handleValue(element.value) + " DEV";
+    const gas = ((element.gasUsed * element.gasPrice) / (10**18)).toFixed(8);
 
-        fila.append(number, txn, age, from, to, value, gas);
-        table_body.append(fila);
-    });
+    return [number, txn, age, from, to, value, gas];
+  }).reverse(); // Para mostrar desde la ultima transferencia.
+
+  const mygrid = new gridjs.Grid({
+    columns: ["N°",
+            "Txn",
+            "Age",
+            "From",
+            "To",
+            "Value",
+            "Gas Fee"
+            ],
+    pagination: true,
+    data: tableData,
+    style: {
+        table: {
+          border: '3px solid #ccc'
+        },
+        th: {
+          'background-color': 'rgba(0, 0, 0, 0.1)',
+          color: '#000',
+          'border-bottom': '3px solid #ccc',
+          'text-align': 'center'
+        },
+        td: {
+          'text-align': 'center',
+          'color': '#000000'
+        }
+      }
+  }).render(wrapper);
+
+    // wrapper.innerHTML = "";
+    mygrid.updateConfig({
+      // pagination: true,
+      data: tableData,
+    }).forceRender();
 }
-
-// function convertTimestamp(timestamp){
-//     const date = new Date(timestamp * 1000); // Multiplica por 1000 para convertir a milisegundos
-
-//     const dia = date.toLocaleDateString(); // Obtener la fecha en formato legible
-//     const hora = date.toLocaleTimeString(); // Obtener la hora en formato legible
-
-//     console.log("Fecha:", dia);
-//     console.log("Hora:", hora);
-
-//     return ("Fecha:", dia + "Hora:", hora)
-
-// }
 
 function handleAdressFromTo(element) {
     if (element.from === element.to){

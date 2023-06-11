@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./src/css/index.css">
 
@@ -161,23 +163,10 @@
 
         <section class="api_txcontainer">
             <div class="normal_transactions_container">
-                <div class="normal_title"></div>
-                <div class="normal_table">
-                    <table class="api_table">
-                        <thead>
-                            <tr>
-                                <th>N°</th>
-                                <th>Txn</th>
-                                <th>Age</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Value</th>
-                                <th>Txn Fee</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table_body">
-                        </tbody>
-                    </table>
+                <div class="normal_title">
+                    <h1>Transactions</h1>
+                </div>
+                <div id="wrapper">
                 </div>
             </div>
             <div class="api_powered">
