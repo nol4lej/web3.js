@@ -19,6 +19,7 @@ const add_chain_button = document.getElementById("add_chain");
 const wrapper = document.getElementById("wrapper");
 const transaction_result = document.getElementById("transaction_result");
 const transaction_status = document.getElementById("transaction_status");
+const get_tokens = document.getElementById("get_tokens")
 export let verificarCuentaFetch;
 
 
@@ -47,16 +48,17 @@ export async function connectWallet(provider){
             account_data_container.style.display = "flex";
             disconnect_button.style.display = "flex";
             metamask_button.style.display = "none";
-            wrapper.style.display = "block"
+            wrapper.style.display = "block";
+            get_tokens.style.display = "flex";
             verificarCuentaFetch = true;
-            fetchExplorer()
-            VerifyChain()
+            fetchExplorer();
+            VerifyChain();
             getBalance(currentAccount);
             activeButtons();
             resolve();
         } catch (error) {
-            console.log(error.message)
-            reject()
+            console.log(error.message);
+            reject();
         };
     });
 };
@@ -65,10 +67,10 @@ async function getBalance(account){
     const balance = await web3.eth.getBalance(account);    
     if(balance){
         const balance_legible = web3.utils.fromWei(balance, 'ether'); //Conversion del resultado hexadecimal a numero entero y aplicar el factor de conversion (wei a ether). El resultado es de tipo string.
-        const balance_float = parseFloat(balance_legible)
+        const balance_float = parseFloat(balance_legible);
         show_balance.textContent = balance_float.toFixed(4) + " DEV"; 
     } else {
-        console.log("No se pudo acceder al balance")
+        console.log("No se pudo acceder al balance");
     };
 };
 
@@ -122,6 +124,7 @@ function Disconnect(){
     connect_info.style.display = "flex";
     disconnect_button.style.display = "none";
     metamask_button.style.display = "flex";
+    get_tokens.style.display = "none"
 
     verificarCuentaFetch = false;
     wrapper.style.display = "none" // Manejando de fetch API transactions 

@@ -175,6 +175,28 @@ button, a{
     padding: 0.2em;
 }
 
+#get_tokens{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5em;
+    padding-top: 0.5em;
+    word-wrap: break-word;
+}
+
+#get_tokens h3{
+    color: #db9a04;
+}
+
+#get_tokens a{
+    text-decoration: none;
+    color: #db9a04;
+}
+
+#get_tokens i{
+    color: #db9a04;
+}
+
 /* END WALLETS END WALLETS END WALLETS */
 
 /* BLOCKCHAIN DATA BLOCKCHAIN DATA */
