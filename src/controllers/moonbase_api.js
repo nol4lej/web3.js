@@ -46,48 +46,62 @@ function datatable(data) {
 
   const mygrid = new gridjs.Grid({
     columns: ["N°",
-            "Txn",
+            { 
+                name: 'Txn',
+                formatter: (cell) => gridjs.html(cell)
+            },
             "Age",
             "From",
-            "To",
+            { 
+                name: 'To',
+                formatter: (cell) => gridjs.html(cell)
+            },
             "Value",
             "Gas Fee"
             ],
-    pagination: true,
+    search: true,
+    pagination: {
+        enabled: true,
+        style: 'pagination', //
+      },
+    sort: true,
     data: tableData,
     style: {
-        table: {
-          border: '3px solid #ccc'
-        },
         th: {
-          'background-color': 'rgba(0, 0, 0, 0.1)',
-          color: '#000',
-          'border-bottom': '3px solid #ccc',
-          'text-align': 'center'
+          'background-color': '#573d9038'
         },
         td: {
-          'text-align': 'center',
-          'color': '#000000'
-        }
+            'border-bottom' : '1px solid #e5e7eb'
+        },
+        footer: {
+            'background-color': '#573d9038'
+          }
       }
   }).render(wrapper);
 
     // wrapper.innerHTML = "";
     mygrid.updateConfig({
       // pagination: true,
-      data: tableData,
+      data: () => {
+        return new Promise (resolve => {
+            setTimeout(() => {
+                resolve(tableData, 2000)
+            })
+        })
+      }
+    //   data: tableData,
     }).forceRender();
 }
 
 function handleAdressFromTo(element) {
     if (element.from === element.to){
-        return `<span class="toSelf">SELF</span> ${element.to.slice(0,6)+"..."+element.to.slice(-4)}`
+        return `<span class="txnStatus"><span class="toSelf">SELF</span> ${element.to.slice(0,6)+"..."+element.to.slice(-4)}</span>`
     } else if(element.contractAddress){
-        return `<span class="toOut">OUT</span> <a href="https://moonbase.moonscan.io/address/${element.contractAddress}" target="_blank">Contract Creation</a>` 
+        return `<span class="txnStatus"><span class="toOut">OUT</span> <a href="https://moonbase.moonscan.io/address/${element.contractAddress}" target="_blank">Contract Creation</a></span>` 
     } else if (element.from !== currentAccount){
-        return `<span class="toIn">IN</span> ${element.to.slice(0,6)+"..."+element.to.slice(-4)}`
+        return `<span class="txnStatus"><span class="toIn">IN</span> ${element.to.slice(0,6)+"..."+element.to.slice(-4)}</span>`
     } else if(element.from !== element.to){
-        return `<span class="toOut">OUT</span> ${element.to.slice(0,6)+"..."+element.to.slice(-4)}`
+        return `<span class="txnStatus"><span class="toOut">OUT</span> ${element.to.slice(0,6)+"..."+element.to.slice(-4)}</span>`
     } 
 }
 

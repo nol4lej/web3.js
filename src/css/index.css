@@ -470,64 +470,58 @@ button, a{
 }
 
 
-
-table{
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
+.gridjs-tbody, td.gridjs-td{
+    background: transparent;
 }
 
-#table_body td{
-    padding: 0.5em;
-    white-space: nowrap;
-    text-align: start;
-}
-
-#table_body tr:nth-child(2n){
-    background-color: var(--bg-input);
-
-}
-
-.transactionTo{
+.gridjs-td span{
     display: flex;
     align-items: center;
+    /* justify-content: center; */
     gap: 0.5em;
-
 }
 
-.transactionTxn{
-    display: flex;
-    align-items: center;
-    gap: 0.3em;
+.gridjs-pagination .gridjs-pages button, .gridjs-pagination .gridjs-pages button.gridjs-spread, .gridjs-pagination .gridjs-pages button.gridjs-currentPage{
+    background-color: #0000;
 }
 
-.transactionTxn i{
+th.gridjs-th{
+    border: none;
+}
+
+td.gridjs-td{
+    border: none;
+}
+
+.gridjs-tr i{
     display: flex;
     font-size: 18px;
     color: red;
-    
-}
-
-#table_body span{
-    width: 50px;
-    padding: 0.3em;
-    border-radius: 10px;
-    text-align: center;
 }
 
 .toSelf{
     color: #626c76;
     background-color: #3e444a;
+    padding: 0.3em;
+    border-radius: 10px;
+    width: 45px;
 }
 
 .toIn{
     color: #02977e;
     background-color: #005d4d;
+    padding: 0.3em;
+    border-radius: 10px;
+    width: 45px;
+    justify-content: center;
 }
 
 .toOut{
     color: #b47d00;
     background-color: #6f4f03;
+    padding: 0.3em;
+    border-radius: 10px;
+    width: 45px;
 }
 
 
