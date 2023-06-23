@@ -2,199 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="/src/assets/main.css">
 
-    <title>Testing dApp - Moonbase Testnet</title>
+    <title>Document</title>
 </head>
 <body>
-
-    <div id="error_chain_modal">
-        <div class="error_content">
-            <div class="material-icons">error</div>
-            <p id="text_error"></p> 
-        </div>
-    </div>
-
-    <header class="header">
-        <div class="tittle_container">
+    
+    <header class="container header">
+        <div class="header__titles">
             <h1>Decentralized Application</h1>
             <p>Testing with MetaMask SDK + web3.js + Moonbase Alpha API</p>
         </div>
-        <div class="blockchain_data_container">
-            <div class="blockchain_status_buttons">
-                <div class="connect_add_buttons">
-                    <div class="connect_buttons">
-                        <button id="metamask_button" class="general_button"><img src="./src/img/metamask.png" alt="">Connect Wallet</button>
-                        <button id="disconnect_button" class="general_button"><img src="./src/img/metamask.png" alt="">Disconnect Wallet</button>
-                        <button id="add_chain" disabled><img src="./src/img/moonbaselogo.png" alt=""><p>Add Moonbase</p></button>
-                    </div>
-                    <div id="connect_info">
-                        <i class="material-icons">info</i>
-                        <p>Connect your wallet to interact</p>
-                    </div>
-                </div>
-                <div id="account_data_container">
-                    <div class="wallet_data">
-                        <i class="material-icons">account_balance_wallet</i>
-                        <p id="show_account"></p>
-                        <button id="copy_wallet" class="material-icons">content_copy</button>
-                        <span id="copied_wallet">Copied</span>
-                    </div>
-                    <div class="balance_data">
-                        <i class="material-icons">savings</i>
-                        <span id="show_balance"></span>
-                    </div>
-                </div>
-                <div id="get_tokens">
-                    <h3>Get tokens</h3>
-                    <p>To start testing on Moonbase Alpha, you can get DEV tokens from the <a href="https://faucet.moonbeam.network/" target="_blank">Moonbase Alpha Faucet <i class="material-icons">arrow_outward</i></a></p>
-                </div>
-            </div>
-            <div class="blockchain_data">
-                <div class="connect_chain">
-                    <span id="current_blockchain">● Connecting Chain</span>
-                </div>
-                
-                <div class="bc_container_data">
-                    <h4>Lastest Block:</h4>
-                    <span id="current_block"></span>
-                </div>
-                <div class="bc_container_data">
-                    <h4>Miner:</h4>  
-                    <span id="block_miner"></span>
-                    <button id="copy_miner" class="material-icons">content_copy</button>
-                    <span id="copied_miner">Copied!</span>
-                </div>
-                <div class="bc_container_data">
-                    <h4>Hash:</h4>
-                    <span id="hash_block"></span>
-                    <button id="copy_hash" class="material-icons">content_copy</button>
-                    <span id="copied_hash">Copied!</span>
-                </div>
-                <div class="bc_container_data">
-                    <h4>Gas used:</h4>
-                    <span id="gas"></span>
-                </div>
-            </div>
-        </div>
     </header>
 
+    <nav class="container nav">
+        <div class="nav__content">
+            <h2>Menu</h2>
+            <button class="nav__button" id="nav__button"><i class="material-icons menu" id="icon-nav-btn">menu</i></button>
+        </div>
+        <ul class="menu__list" id="menu__list">
+            <li class="menu__item"><i class="material-icons">home</i><a class="menu__link" href="#">Home</a></li>
+            <li class="menu__item"><i class="material-icons">home</i><a class="menu__link" href="#/transactions">Transactions</a></li>
+            <li class="menu__item"><i class="material-icons">home</i><a class="menu__link" href="#/signs">Signs</a></li>
+        </ul>
+    </nav>
 
-
-    <main class="main">
-
-        <section class="signs_container">
-            <div class="sings_title">
-                <h1>Signs </h1>
-            </div>
-            <div class="sign">
-                <label for="">Sign a message:</label>
-                <input type="text" id="input_sign">
-                <button id="submit_sign" class="general_button" disabled>Sign</button>
-                <div id="content_sign_hash">
-                    <div class="" id="sign_Hash"></div>
-                    <button id="copy_sign" class="material-icons">content_copy</button>
-                </div>
-                
-            </div>
-            <div class="sign_verify_container">
-                <label for="">Hash:</label>
-                <input type="text" id="input_hash">
-                <label for="">Signer Wallet:</label>
-                <input type="text" id="input_wallet">
-                <label for="">Message:</label>
-                <input type="text" id="input_msg">
-                <button id="submit_verify_sign" class="general_button" disabled>Verify sign</button>
-                <div id="content_verify_sign">
-                    <div id="verify_sign"></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="transactions_container">
-            <div class="transactions_title">
-                <h1>Transactions</h1>
-            </div>
-            <div class="transactions_content">
-                <h4>Send DEV</h4>
-                <label for="">Transfer to (wallet):</label>
-                <input type="text" id="trans_to">
-                <label for="">Value (in DEV):</label>
-                <input type="number" min="0" step="any" id="value_transaction">
-                <button id="submit_transaction" class="general_button" disabled>Send transaction</button>
-
-                <div class="transaction_result_container">
-                    <div class="status_container">
-                        <p id="transaction_status">● Pending</p>
-                    </div>
-                    <span id="transaction_result"></span>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="create_wallets">
-            <div class="create_Wallets_title">
-                <h1>Create Wallet</h1>
-            </div>
-            <div class="create_button_container">
-                <button id="create_wallet" class="general_button" disabled>Create Wallet</button>
-            </div>
-            <div id="wallets_created">
-                <div class="keys_container">
-                    <h4>Public key: </h4>
-                    <div class="key_content">
-                        <p id="public_key"></p>
-                        <button id="copy_public_key" class="material-icons">content_copy</button>  
-                    </div>
-                </div>
-                <div class="keys_container">
-                    <h4>Private key: </h4>
-                    <div class="key_content">
-                        <p id="private_key"></p>
-                        <button id="copy_private_key" class="material-icons">content_copy</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="api_txcontainer">
-            <div class="normal_transactions_container">
-                <div class="normal_title">
-                    <h1>All Transactions</h1>
-                </div>
-                <div id="wrapper">
-                </div>
-            </div>
-            <div class="api_powered">
-                <p>Powered by <a href="https://moonbase.moonscan.io" target="_blank">https://moonbase.moonscan.io</a> APIs</p>
-
-            </div>
-            
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <h4>Created by Nolasco Medina</h4>
-    </footer>
-
-
-
+    <main id="main"></main>
+    
 </body>
 
-<script type="module" src="index.js"></script>
-<script type="module" src="./src/controllers/1connections.js"></script>
-<script type="module" src="./src/controllers/3connect_provider.js"></script> 
-<script type="module" src="./src/controllers/modal_connect.js"></script>
-<script type="module" src="./src/controllers/moonbase_api.js"></script>
-
+<script src="/index.js" type="module"></script>
+<script src="/src/controllers/nav.js"></script>
 
 </html>

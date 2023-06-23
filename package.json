@@ -1,19 +1,12 @@
 {
-  "name": "testing_login",
+  "name": "spa_version",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "@metamask/sdk": "^0.3.0",
-    "express": "^4.18.2",
-    "fs": "^0.0.1-security",
-    "http": "^0.0.1-security",
-    "web3": "^1.10.0"
-  }
+  "license": "ISC"
 }

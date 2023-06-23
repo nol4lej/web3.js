@@ -1,0 +1,13 @@
+.header__titles{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--bg-containers);
+    border-radius: 0 0 10px 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.header__titles p{
+    color: var(--font-seconday);
+}
