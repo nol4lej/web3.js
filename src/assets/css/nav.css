@@ -23,10 +23,9 @@
     list-style: none;
     display: none;
     flex-direction: column;
-    gap: .5rem;
+    gap: 2rem;
     padding: 1rem;
     margin: 0;
-    transition: all 1s ease-in-out;
 }
 
 .menu__item{
@@ -39,4 +38,17 @@
 
 .menu__item:hover{
     color: var(--font-seconday);
+}
+
+@media screen and (min-width: 768px) {
+    .nav__content{
+        display: none;
+    }
+
+    .menu__list{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 5rem;
+    }
 }

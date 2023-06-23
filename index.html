@@ -8,18 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/src/assets/main.css">
+    <link rel="stylesheet" href="/src/assets/css/index.css">
 
     <title>Document</title>
 </head>
 <body>
-    
-    <header class="container header">
-        <div class="header__titles">
-            <h1>Decentralized Application</h1>
-            <p>Testing with MetaMask SDK + web3.js + Moonbase Alpha API</p>
-        </div>
-    </header>
 
     <nav class="container nav">
         <div class="nav__content">
@@ -28,16 +21,24 @@
         </div>
         <ul class="menu__list" id="menu__list">
             <li class="menu__item"><i class="material-icons">home</i><a class="menu__link" href="#">Home</a></li>
-            <li class="menu__item"><i class="material-icons">home</i><a class="menu__link" href="#/transactions">Transactions</a></li>
-            <li class="menu__item"><i class="material-icons">home</i><a class="menu__link" href="#/signs">Signs</a></li>
+            <li class="menu__item"><i class="material-icons">currency_exchange</i><a class="menu__link" href="#/transactions">Transactions</a></li>
+            <li class="menu__item"><i class="material-icons">receipt_long</i><a class="menu__link" href="#/signs">Signs</a></li>
         </ul>
     </nav>
+    
+    <header class="container header">
+        <div class="header__titles">
+            <h1>Decentralized Application</h1>
+            <p>Testing with MetaMask SDK + web3.js + Moonbase Alpha API</p>
+        </div>
+    </header>
 
-    <main id="main"></main>
+    <main id="root"></main>
     
 </body>
 
 <script src="/index.js" type="module"></script>
+<script src="/app.js" type="module"></script>
 <script src="/src/controllers/nav.js"></script>
 
 </html>

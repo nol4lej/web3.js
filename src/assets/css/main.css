@@ -1,0 +1,106 @@
+/* BLOCKCHAIN DATA BLOCKCHAIN DATA */
+.blockchain{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--bg-containers);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.blockchain__connect{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    font-size: 16px;
+
+}
+
+.blockchain__current{
+    text-align: center;
+    color: #db9a04;
+    /* background-color: rgba(219,154,4,.1); */
+    padding: 0.5em;
+    transition: all 0.5s ease-in-out;
+    border-radius: 5px;
+}
+
+#current_blockchain.active{
+    color: #00c9a7;
+    /* background-color: rgba(0,201,167,.1); */
+}
+
+#add_chain{
+    display: none;
+    align-items: center;
+    gap: 5px;
+    width: max-content;
+    padding: 0.5em;
+    border: 1px solid var(--bg-input-border);
+    border-radius: 5px;
+    background-color: var(--button);
+    transition: background 0.3s ease-in-out;
+}
+
+#add_chain:hover{
+    background-color: var(--button-hover)
+}
+
+#add_chain img{
+    width: 30px;
+    height: 30px;
+}
+
+.blockchain__data{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+}
+
+.input__data{
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    position: relative;
+    padding: 0.5em;
+    background-color: var(--bg-input);
+    border-radius: 10px;
+}
+
+#copy_miner, #copy_hash, #copy_wallet{
+    /* display: none; */
+    position: absolute; 
+    right: 5px;
+    font-size: 18px;
+    transition: font-size 0.2s ease-in-out;
+    border: 1px solid black;
+    background: none;
+    border: none;
+}
+
+#copy_miner:hover, #copy_hash:hover, #copy_wallet:hover{
+    font-size: 20px;
+}
+
+#copied_miner , #copied_hash, #copied_wallet{
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+    color: #00c9a7;
+    background-color: rgba(0,201,167,.1);
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+#copied_miner.active , #copied_hash.active, #copied_wallet.active{
+    display: block;
+    transition: all 0.5s;
+}
+
+/* END BLOCKCHAIN DATA END BLOCKCHAIN DATA */

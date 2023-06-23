@@ -1,11 +1,13 @@
-const main = document.getElementById("main")
+import { Main } from "../components/main.js";
+
+const root = document.getElementById("root")
 
 const router = (route) => {
-    main.innerHTML = "";
+    root.innerHTML = "";
     switch (route) {
         case "#/":
         case "":
-            main.innerHTML = "estoy en main"
+            root.innerHTML = Main();
             break;
         case "#/transactions":
             console.log("estoy en transactions")
