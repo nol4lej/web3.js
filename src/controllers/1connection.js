@@ -6,7 +6,7 @@ class ConnectionSubject extends Subject{
     constructor(){
         super();
         this.state = false;
-        console.log(this.observers)
+        console.log(this.observers, "connection subject")
     }
     notify(state){
         this.state = state;
@@ -18,7 +18,7 @@ class ConnectionSubject extends Subject{
 
 class ConnectionObserver{
     notify(subject){
-        console.log(subject.state)
+        console.log(subject.state, "connection estado")
     }
 }
 
@@ -29,7 +29,7 @@ export const connectionSubject = new ConnectionSubject();
 const observer = new ConnectionObserver();
 connectionSubject.subscribe(observer)
 
-let web3; // scope global para posterior a darle valor poder exportar y reutilizar. 
+export let web3; // scope global para posterior a darle valor poder exportar y reutilizar. 
 
 export function connecting() {
     return new Promise((resolve, reject) => {

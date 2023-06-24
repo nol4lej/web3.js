@@ -1,11 +1,76 @@
-// import { web3 } from "./1connection.js";
+import { web3 } from "./1connection.js";
+import { connectionSubject } from "./1connection.js";
+import { Subject } from "../helpers/subject.js";
 
-// const state = {
-//     currentBlock: "",
-//     blockMiner: "",
-//     hashBlock: "",
-//     gas: ""
-// }
+// Instancia que observa el estado de connectionSubject
+class ConnectionObserverBlockchain{
+    notify(subject){
+        const state = subject.state
+        if(state){
+            lastBlock();
+        };
+    };
+};
+const connectionObserverBlockchain = new ConnectionObserverBlockchain();
+connectionSubject.subscribe(connectionObserverBlockchain);
+
+// Subclase que hereda métodos y propiedades de la clase base Subject
+class BlockchainSubject extends Subject{
+    constructor(){
+        super();
+        this.data = {
+            lastestBlock: null,
+            miner: null,
+            hash: null,
+            gasUsed: null,
+        }
+        console.log(this.observers, "blockchain subject observers");
+    }
+
+    notify(data){
+        for (const key in data){
+            // console.log(data[key])
+            if(data.hasOwnProperty(key)){
+                this.data[key] = data[key]
+            };
+        };
+        super.notify(this);
+    };
+};
+
+class BlockchainObserver{
+    notify(subject){
+        // console.log(subject.data);
+    };
+};
+
+export const blockchainSubject = new BlockchainSubject();
+const blockchainObserver = new BlockchainObserver();
+blockchainSubject.subscribe(blockchainObserver);
+
+
+
+
+
+function lastBlock(){
+    return new Promise((resolve, reject) => {
+        web3.eth.getBlock('latest')
+        .then(blockHeader => {
+            // console.log(blockHeader)
+            // handleNewBlockHeaders(blockHeader);
+            blockchainSubject.notify({
+                lastestBlock: blockHeader.number,
+                miner: blockHeader.miner,
+                hash: blockHeader.hash,
+                gasUsed: blockHeader.gasUsed
+            })
+            resolve()
+        })
+        .catch((error) => {
+            console.error('Error al obtener el último bloque:', error);
+        });
+    })
+}
 
 // // Función para manejar el evento newBlockHeaders
 // function handleNewBlockHeaders(blockHeader) {
