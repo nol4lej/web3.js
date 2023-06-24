@@ -1,14 +1,14 @@
 import { connectionSubject } from "../controllers/1connection.js"
 
-let connState = "Desconnected";
+let connState = "○ Desconnected";
+let renderStyle = "";
 
 class ConnectionObserverMain{
     notify(subject){
         console.log(subject.state);
         if(subject.state === true){
-            connState = "Connected";
-        }else {
-            connState = "Desconnected";
+            connState = "● Connected";
+            renderStyle = "active";
         }
         updateTemplate()
     }
@@ -21,6 +21,11 @@ function updateTemplate() {
     const currentBlockchainElement = document.getElementById("current_blockchain");
     if (currentBlockchainElement) {
         currentBlockchainElement.textContent = connState;
+        if(connectionSubject.state === true){
+            currentBlockchainElement.classList.add(renderStyle);
+        } else {
+            currentBlockchainElement.classList.remove(renderStyle);
+        }
     }
 }
 
@@ -30,7 +35,7 @@ export function Main(){
     return `
         <section class="container blockchain">
             <div class="blockchain__connect">
-                <span class="blockchain__current" id="current_blockchain">${connState}</span>
+                <span class="blockchain__current ${renderStyle}" id="current_blockchain">${connState}</span>
             </div>
             <div class="blockchain__data">
                 <div class="input__data">
@@ -59,37 +64,3 @@ export function Main(){
         </section>
     `
 }
-
-    // const state = {
-    //     connection: false
-    // }
-    
-    // const template = () => {
-    //     if(localStorage.getItem("ConnectionState") === "true"){
-    //         current_blockchain.classList.add("active");
-    //         return "● Connected Moonbase Alpha";
-    //     } else {
-    //         return "○ Disconnected";
-    //     }
-    // }
-    
-    // const render = () => {
-    //     const current_blockchain = document.getElementById("current_blockchain");
-    //     current_blockchain.textContent = template();
-    //     console.log(state)
-    // }
-    
-    // const setState = obj => {
-    //     for(let key in obj){
-    //         if(state.hasOwnProperty(key)){
-    //             state[key] = obj[key]
-    //         }
-    //     }
-    //     render()
-    // }
-    
-    // const getState = () => {
-    //     console.log( localStorage.getItem("ConnectionState"));
-    // }
-    // // getState()
-    // setState({connection: getState})

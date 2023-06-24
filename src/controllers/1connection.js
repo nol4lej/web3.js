@@ -29,6 +29,7 @@ export const connectionSubject = new ConnectionSubject();
 const observer = new ConnectionObserver();
 connectionSubject.subscribe(observer)
 
+let web3; // scope global para posterior a darle valor poder exportar y reutilizar. 
 
 export function connecting() {
     return new Promise((resolve, reject) => {
@@ -45,46 +46,3 @@ export function connecting() {
 }
 
 connecting()
-
-
-// let web3; // scope global para posterior a darle valor poder exportar y reutilizar. 
-
-// export async function connectNetwork(){
-//     await connecting();
-//     // executeLastBlockAndEvent();
-// }
-
-// function connecting(){
-//     localStorage.removeItem('ConnectionState');
-//     return new Promise((resolve, reject) => {
-//         // web3 = new Web3("wss://moonasdasdasdasbeam-alpha.api.onfinality.io/public-ws");
-//         web3 = new Web3("wss://moonbeam-alpha.api.onfinality.io/public-ws");
-//         // Verifica si la conexión es válida
-//         web3.eth.net.isListening()
-//         .then(() => {
-//             localStorage.setItem('ConnectionState', JSON.stringify({
-//                 state: true,
-//                 text: '● Connected Moonbase Alpha'
-//             }));
-//             // Renderiza por primera vez
-//             const current_blockchain = document.getElementById("current_blockchain");
-//             current_blockchain.classList.add("active");
-//             current_blockchain.textContent = "● Connected Moonbase Alpha";
-//             resolve();
-//         })
-//         .catch(error => {
-//             localStorage.setItem('ConnectionState', JSON.stringify({
-//                 state: false,
-//                 text: '○ Disconnected'
-//               }));
-//             reject(error.message);
-//         });
-//     })
-// }
-
-// connectNetwork()
-
-// export {web3, connecting};
-// // Se exporta connecting para importar en 3accounts.js y esperar la promesa de connecting, si la promesa rechaza, no permite conectar la wallet.
-
-
