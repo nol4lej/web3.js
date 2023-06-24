@@ -1,1 +1,1 @@
-import * as modulo from "./src/controllers/1connection.js";
+import { connecting } from "./src/controllers/1connection.js";
