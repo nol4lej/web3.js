@@ -1,4 +1,4 @@
-export class Subject {
+export class Subject { // Sujeto
     // El constructor es un método especial que se llama automáticamente cuando se crea una nueva instancia de una clase. Es utilizado para inicializar el estado y las propiedades de la instancia.
     constructor(){
         // grupo de observadores

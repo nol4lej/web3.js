@@ -1,25 +1,36 @@
-// import { connectNetwork, web3 } from "../controllers/1connection.js";
+import { connectionSubject } from "../controllers/1connection.js"
+
+let connState = "Desconnected";
+
+class ConnectionObserverMain{
+    notify(subject){
+        console.log(subject.state);
+        if(subject.state === true){
+            connState = "Connected";
+        }else {
+            connState = "Desconnected";
+        }
+        updateTemplate()
+    }
+}
+
+const connectionObserver = new ConnectionObserverMain();
+connectionSubject.subscribe(connectionObserver)
+
+function updateTemplate() {
+    const currentBlockchainElement = document.getElementById("current_blockchain");
+    if (currentBlockchainElement) {
+        currentBlockchainElement.textContent = connState;
+    }
+}
 
 export function Main(){
-    let connectionText = "○ Disconnected"
-    let classValue;
-    
-    if(localStorage.getItem("ConnectionState")){
-        // Recuperar el localStorage y convertirlo a objeto JS
-        let connectionValue = JSON.parse(localStorage.getItem("ConnectionState"))
-        connectionText = connectionValue.text;
 
-        if(connectionValue.state === true){
-            classValue = "active";
-        }else{
-            classValue = "";
-        }
-    }
 
     return `
         <section class="container blockchain">
             <div class="blockchain__connect">
-                <span class="blockchain__current ${classValue}" id="current_blockchain">${connectionText}</span>
+                <span class="blockchain__current" id="current_blockchain">${connState}</span>
             </div>
             <div class="blockchain__data">
                 <div class="input__data">
